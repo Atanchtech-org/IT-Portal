@@ -121,7 +121,7 @@
 
   <div id="auth-top-bar" class="auth-header">
     <div class="brand">
-      <img src="uni.png" onerror="this.src='https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQLVB4LaV5NBd-t32EHtIn0bskMD-x63nD3cSqgC5CCV2qaps83luKSg2TTys5YF3r2hxg65t9zWKnpX9U'" alt="Kisii University Logo">
+      <img src="uni.png"  alt="Kisii University Logo">
       <span>Kisii University | Department of Computing Sciences</span>
     </div>
     <span style="font-size: 0.85rem; color: var(--muted);">Bachelor of Science in Information Technology</span>
@@ -144,7 +144,6 @@
         <button type="submit" class="btn-primary" style="margin-bottom: 1rem;">Sign In</button>
       </form>
       <div style="text-align: center; font-size: 0.9rem;">
-        <p style="font-size:.82rem;color:var(--muted);">Need help? <a href="mailto:kisiiit2025@email.com?subject=Student%20Portal%20Help">kisiiit2025@email.com</a></p>
         <p><a href="#" onclick="openForgotPassword(); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">Forgot password?</a></p>
         <p>New Student? <a href="#" onclick="switchView('register')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Register Student Account</a></p>
       </div>
@@ -157,7 +156,7 @@
       <p style="text-align:center;color:var(--muted);font-size:.88rem;">Request a verification code from the administrator.</p>
       <div id="forgot-message" class="alert hidden"></div>
       <form id="forgot-request-form">
-        <div class="form-group"><label>Registration Number / Username*</label><input id="forgot-username" required></div>
+        <div class="form-group"><label>Registration Number*</label><input id="forgot-username" required></div>
         <div class="form-group"><label>Your registered email address (if available)</label><input type="email" id="forgot-email"></div>
         <button class="btn-primary" type="submit">Send Reset Request</button>
       </form>
@@ -189,7 +188,7 @@
           <input type="text" id="reg-lastname" required>
         </div>
         <div class="form-group">
-          <label>Surname (optional)</label>
+          <label>Surname</label>
           <input type="text" id="reg-surname">
         </div>
         <div class="form-group">
@@ -218,8 +217,8 @@
 
   <div id="view-name-prompt" class="auth-wrapper hidden">
     <div class="card">
-      <h2 style="margin-bottom: 0.5rem; text-align: center;">Mandatory Name Verification</h2>
-      <p style="color: var(--muted); text-align: center; margin-bottom: 1.5rem; font-size: 0.88rem;">Please provide your legal names to proceed.</p>
+      <h2 style="margin-bottom: 0.5rem; text-align: center;">Verification</h2>
+      <p style="color: var(--muted); text-align: center; margin-bottom: 1.5rem; font-size: 0.88rem;">Full Name</p>
       <form id="name-prompt-form">
         <div class="form-group">
           <label>First Name*</label>
@@ -233,7 +232,7 @@
           <label>Surname (optional)</label>
           <input type="text" id="prompt-surname">
         </div>
-        <div class="form-group"><label>Phone Number*</label><input type="tel" id="prompt-phone" required placeholder="07XXXXXXXX or +2547XXXXXXXX"></div>
+        <div class="form-group"><label>Phone Number*</label><input type="tel" id="prompt-phone" required ></div>
         <button type="submit" class="btn-primary">Enter</button>
       </form>
     </div>
@@ -364,8 +363,8 @@
               <input type="text" id="student-sname" disabled>
             </div>
             <div class="form-group"><label>Phone Number</label><input type="tel" id="student-phone" disabled></div>
-            <div class="form-group"><label>Gmail / Email Address</label><input type="email" id="student-email" placeholder="example@gmail.com"></div>
-            <div class="form-group"><label>Other Contact (optional)</label><input type="text" id="student-other-contact" placeholder="Alternative contact or details"></div>
+            <div class="form-group"><label>Gmails</label><input type="email" id="student-email" ></div>
+            <div class="form-group"><label>Other Contact</label><input type="text" id="student-other-contact"></div>
 
             <div style="border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.25rem;">
               <h4 style="margin-bottom: 0.75rem;">Change Password</h4>
@@ -379,7 +378,7 @@
                 <input type="password" id="student-new-pass">
               </div>
             </div>
-            <button type="submit" class="btn-primary">Save Profile & Password</button>
+            <button type="submit" class="btn-primary">Save</button>
           </form>
         </div>
 
@@ -442,17 +441,17 @@
         </div>
 
         <div id="student-tab-chat" class="card hidden">
-          <h3>Anonymous Student Chat</h3>
+          <h3>Chat</h3>
           <div id="chat-alias-setup" class="card" style="background: var(--bg); margin-top: 1rem;">
             <h4>Create</h4>
-            <p style="font-size: 0.86rem; color: var(--muted); margin: 0.4rem 0 1rem;">Your real username and password are hidden in chat</p>
+            <p style="font-size: 0.86rem; color: var(--muted); margin: 0.4rem 0 1rem;">username</p>
             <div style="display: flex; gap: 0.75rem;">
               <input type="text" id="chat-alias-input" placeholder="e.g. CodeNinja" style="flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px;">
               <button onclick="saveChatAlias()" class="btn-primary" style="width: auto;">Username</button>
             </div>
           </div>
           <div id="chat-room-container" class="hidden" style="margin-top: 1rem;">
-            <div style="margin-bottom: 0.75rem; font-size: 0.88rem; color: var(--muted);">Chatting as alias: <strong id="active-chat-alias" style="color: var(--primary);"></strong></div>
+            <div style="margin-bottom: 0.75rem; font-size: 0.88rem; color: var(--muted);">Chattings: <strong id="active-chat-alias" style="color: var(--primary);"></strong></div>
             <div id="chat-messages" style="height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--bg);"></div>
             <form id="chat-send-form" style="display: flex; gap: 0.75rem;">
               <input type="text" id="chat-text-input" placeholder="Message..." required style="flex: 1; padding: 0.72rem; border: 1px solid var(--border); border-radius: 8px;">
@@ -531,10 +530,10 @@
                 <textarea id="rep-tt-content" rows="3" placeholder="Enter the timetable details here, or attach a timetable file below."></textarea>
               </div>
               <div class="form-group">
-                <label>Attach Timetable File (optional)</label>
+                <label>Attach File</label>
                 <input type="file" id="rep-tt-file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.xls,.xlsx,.csv">
               </div>
-              <button type="submit" class="btn-primary">Publish Timetable</button>
+              <button type="submit" class="btn-primary">Publish</button>
             </form>
           </div>
 
@@ -773,9 +772,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Evidence File (optional)</label>
+              <label>Evidence</label>
               <input type="file" id="admin-action-evidence">
-              <small style="color:var(--muted); display:block; margin-top:0.35rem;">Optional. For this browser prototype, files are stored locally as browser data.</small>
+              <small style="color:var(--muted); display:block; margin-top:0.35rem;"></small>
             </div>
             <button type="submit" class="btn-primary" id="admin-action-submit">Apply Action</button>
           </form>
@@ -825,7 +824,7 @@
         </div>
 
         <div id="admin-tab-staff" class="card hidden">
-          <h3>Lecturers, CODs, Deans, & VC</h3>
+          <h3>Staff</h3>
           <div style="overflow-x: auto;">
             <table class="table" id="admin-staff-table"></table>
           </div>
@@ -839,7 +838,7 @@
         </div>
 
         <div id="admin-tab-provision" class="card hidden">
-          <h3>Manual User Provisioning (Staff, VC, Dean, Student, etc.)</h3>
+          <h3>Provisioning</h3>
           <form id="manual-staff-form" style="max-width: 500px; margin-top: 1rem;">
             <div class="form-group">
               <label>Username / Reg Number</label>
@@ -925,7 +924,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Evidence File (optional)</label>
+              <label>Evidence</label>
               <input type="file" id="warn-file">
             </div>
             <button type="submit" class="btn-primary">Issue Warning</button>
