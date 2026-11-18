@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bachelor of  science in Information Technology | Kisii University Portal</title>
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --card: #ffffff;
+      --sidebar: #0d1626;
+      --sidebar-hover: #1a2740;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --border: #e2e8f0;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --warning: #d97706;
+    }
+
+    body.white-mode {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --sidebar: #1e293b;
+      --sidebar-hover: #334155;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #cbd5e1;
+    }
+
+    body.black-mode {
+      --bg: #090d16;
+      --card: #111827;
+      --sidebar: #030712;
+      --sidebar-hover: #1f2937;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --border: #374151;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); height: 100vh; overflow: hidden; transition: background-color 0.2s, color 0.2s; }
+
+    .auth-header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text); }
+    .brand img { height: 38px; width: 38px; object-fit: contain; border-radius: 6px; }
+
+    .auth-wrapper { max-width: 460px; margin: 3rem auto; padding: 0 1rem; overflow-y: auto; height: 100vh; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04); margin-bottom: 1.5rem; }
+
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.72rem 0.9rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--bg); color: var(--text); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .form-group input:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    button { cursor: pointer; border: none; border-radius: 8px; padding: 0.72rem 1.25rem; font-weight: 600; font-size: 0.95rem; transition: 0.2s; }
+    .btn-primary { background: var(--primary); color: #ffffff; width: 100%; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-danger { background: var(--danger); color: #ffffff; }
+    .btn-success { background: var(--success); color: #ffffff; }
+
+    .alert { padding: 0.9rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; }
+    .alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
+    .alert-success { background: #dcfce7; color: #166534; border: 1px solid #4ade80; }
+    .alert-warning { background: #fef3c7; color: #92400e; border: 1px solid #fbbf24; }
+
+    .dashboard-layout { display: flex; height: 100vh; overflow: hidden; }
+    .sidebar { width: 285px; background: var(--sidebar); color: #cbd5e1; display: flex; flex-direction: column; padding: 1.5rem 1rem; flex-shrink: 0; height: 100vh; overflow-y: auto; }
+    .sidebar-brand { display: flex; align-items: center; gap: 0.75rem; color: #ffffff; font-weight: 700; font-size: 1.05rem; padding: 0 0.75rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem; }
+    .sidebar-brand img { width: 32px; height: 32px; object-fit: contain; background: #ffffff; border-radius: 6px; padding: 2px; }
+    .nav-section-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; font-weight: 700; padding: 0.65rem 0.75rem 0.3rem; }
+    .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.85rem; border-radius: 8px; color: #cbd5e1; background: transparent; width: 100%; text-align: left; font-size: 0.88rem; font-weight: 500; margin-bottom: 0.2rem; text-decoration: none; }
+    .nav-item:hover { background: var(--sidebar-hover); color: #ffffff; }
+    .nav-item.active { background: rgba(37,99,235,0.3); color: #ffffff; border-left: 3px solid #3b82f6; font-weight: 600; }
+    .sidebar-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .theme-radio-group { display: flex; gap: 1rem; padding: 0.25rem 0.75rem; font-size: 0.85rem; align-items: center; color: #cbd5e1; }
+    .theme-radio-group label { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+
+    .main-area { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    .topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0.9rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .topbar-right { display: flex; align-items: center; gap: 1rem; }
+    .topbar-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+
+    .content-body { padding: 1.75rem 2rem; flex: 1; overflow-y: auto; max-width: 1400px; width: 100%; }
+
+    .table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+    .table th, .table td { padding: 0.8rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+    .table th { background: var(--bg); font-weight: 600; color: var(--muted); }
+
+    .badge { display: inline-block; padding: 0.22rem 0.65rem; border-radius: 999px; font-size: 0.74rem; font-weight: 700; }
+    .badge-admin { background: #fee2e2; color: #991b1b; }
+    .badge-staff { background: #e0e7ff; color: #3730a3; }
+    .badge-student { background: #dcfce7; color: #166534; }
+    .badge-banned { background: #fee2e2; color: #b91c1c; }
+
+    .avatar-preview { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); background: #cbd5e1; }
+    .hidden { display: none !important; }
+
+    .ai-fab { position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: #ffffff; border-radius: 999px; padding: 0.85rem 1.35rem; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35); z-index: 999; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; }
+    .ai-window { position: fixed; bottom: 84px; right: 24px; width: 350px; max-width: calc(100vw - 48px); background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18); z-index: 999; display: flex; flex-direction: column; overflow: hidden; }
+    .ai-header { background: var(--sidebar); color: #ffffff; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+    .ai-body { height: 280px; overflow-y: auto; padding: 1rem; background: var(--bg); display: flex; flex-direction: column; gap: 0.75rem; }
+    .ai-msg { padding: 0.7rem 0.9rem; border-radius: 12px; font-size: 0.86rem; line-height: 1.45; max-width: 85%; }
+    .ai-msg.bot { background: var(--card); border: 1px solid var(--border); color: var(--text); align-self: flex-start; }
+    .ai-msg.user { background: var(--primary); color: #ffffff; align-self: flex-end; }
+    .ai-footer { display: flex; border-top: 1px solid var(--border); padding: 0.6rem; background: var(--card); gap: 0.5rem; }
+    .ai-footer input { flex: 1; padding: 0.55rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.88rem; background: var(--bg); color: var(--text); }
+
+    .analytics-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1rem 0 1.25rem}.analytics-stat{margin:0;padding:1rem;background:var(--bg)}.analytics-stat h4{font-size:.82rem;color:var(--muted)}.analytics-stat p{font-size:1.8rem;font-weight:800;color:var(--primary);margin-top:.35rem}.analytics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:1.25rem}.analytics-panel{margin:0;min-width:0;padding:1.15rem}.analytics-panel h4{font-size:1rem}.analytics-note{font-size:.78rem;color:var(--muted);margin:.3rem 0 .8rem}.analytics-chart{min-height:180px;overflow-x:auto}.analytics-chart svg{width:100%;height:auto;min-height:170px;display:block}.analytics-legend{display:flex;flex-wrap:wrap;gap:.55rem 1rem;font-size:.78rem;margin-top:.6rem}.analytics-legend span{display:inline-flex;align-items:center;gap:.35rem}.analytics-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.analytics-empty{color:var(--muted);font-size:.85rem;padding:1rem 0}.view-as-banner{background:#fff7ed;color:#9a3412;border-bottom:1px solid #fed7aa;padding:.65rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:.86rem}.view-as-banner button{width:auto;padding:.45rem .8rem}@media(max-width:800px){.analytics-grid{grid-template-columns:1fr}.analytics-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+  </style>
+</head>
+<body class="white-mode">
+
+  <div id="auth-top-bar" class="auth-header">
+    <div class="brand">
+      <img src="uni.png" onerror="this.src='https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQLVB4LaV5NBd-t32EHtIn0bskMD-x63nD3cSqgC5CCV2qaps83luKSg2TTys5YF3r2hxg65t9zWKnpX9U'" alt="Kisii University Logo">
+      <span>Kisii University | Department of Computing Sciences</span>
+    </div>
+    <span style="font-size: 0.85rem; color: var(--muted);">Bachelor of Science in Information Technology</span>
+  </div>
+
+  <div id="view-login" class="auth-wrapper">
+    <div class="card">
+      <h2 style="margin-bottom: 0.4rem; text-align: center;">Sign In</h2>
+      <p style="text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Enter username and password</p>
+      <div id="login-error" class="alert alert-error hidden"></div>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="login-username" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-bottom: 1rem;">Sign In</button>
+      </form>
+      <div style="text-align: center; font-size: 0.9rem;">
+        <p style="font-size:.82rem;color:var(--muted);">Need help? <a href="mailto:kisiiit2025@email.com?subject=Student%20Portal%20Help">kisiiit2025@email.com</a></p>
+        <p><a href="#" onclick="openForgotPassword(); return false;" style="color: var(--primary); font-weight: 600; text-decoration: none;">Forgot password?</a></p>
+        <p>New Student? <a href="#" onclick="switchView('register')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Register Student Account</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-forgot" class="auth-wrapper hidden">
+    <div class="card">
+      <h2 style="text-align:center;">Reset Password</h2>
+      <p style="text-align:center;color:var(--muted);font-size:.88rem;">Request a verification code from the administrator.</p>
+      <div id="forgot-message" class="alert hidden"></div>
+      <form id="forgot-request-form">
+        <div class="form-group"><label>Registration Number / Username*</label><input id="forgot-username" required></div>
+        <div class="form-group"><label>Your registered email address (if available)</label><input type="email" id="forgot-email"></div>
+        <button class="btn-primary" type="submit">Send Reset Request</button>
+      </form>
+      <form id="forgot-verify-form" class="hidden" style="margin-top:1rem;">
+        <div class="form-group"><label>Verification Code*</label><input id="forgot-code" inputmode="numeric" maxlength="6" required></div>
+        <button class="btn-primary" type="submit">Verify Code & Reset Password</button>
+      </form>
+      <p style="margin-top:1rem;text-align:center;font-size:.88rem;"><a href="#" onclick="switchView('login');return false;">Back to login</a></p>
+      <p style="font-size:.78rem;color:var(--muted);">This one-file demo stores requests in this browser. It cannot send email automatically; the administrator must send the code using the email link provided in the Admin panel.</p>
+    </div>
+  </div>
+
+  <div id="view-register" class="auth-wrapper hidden">
+    <div class="card">
+      <h2 style="margin-bottom: 0.4rem; text-align: center;">Registration</h2>
+      <p style="text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Requires valid study year and Admin approval</p>
+      <div id="reg-error" class="alert alert-error hidden"></div>
+      <form id="reg-form">
+        <div class="form-group">
+          <label>Registration Number</label>
+          <input type="text" id="reg-username" required>
+        </div>
+        <div class="form-group">
+          <label>First Name*</label>
+          <input type="text" id="reg-firstname" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name*</label>
+          <input type="text" id="reg-lastname" required>
+        </div>
+        <div class="form-group">
+          <label>Surname (optional)</label>
+          <input type="text" id="reg-surname">
+        </div>
+        <div class="form-group">
+          <label>Phone Number*</label>
+          <input type="tel" id="reg-phone" placeholder="07XXXXXXXX or +2547XXXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" required>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="reg-confirm" required>
+        </div>
+        <div class="form-group">
+          <label>Year of Study</label>
+          <input type="text" id="reg-year" required>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-bottom: 1rem;">Submit for Approval</button>
+      </form>
+      <div style="text-align: center; font-size: 0.9rem;">
+        <p>Already approved? <a href="#" onclick="switchView('login')" style="color: var(--primary); font-weight: 600; text-decoration: none;">Sign In</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-name-prompt" class="auth-wrapper hidden">
+    <div class="card">
+      <h2 style="margin-bottom: 0.5rem; text-align: center;">Mandatory Name Verification</h2>
+      <p style="color: var(--muted); text-align: center; margin-bottom: 1.5rem; font-size: 0.88rem;">Please provide your legal names to proceed.</p>
+      <form id="name-prompt-form">
+        <div class="form-group">
+          <label>First Name*</label>
+          <input type="text" id="prompt-firstname" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name*</label>
+          <input type="text" id="prompt-lastname" required>
+        </div>
+        <div class="form-group">
+          <label>Surname (optional)</label>
+          <input type="text" id="prompt-surname">
+        </div>
+        <div class="form-group"><label>Phone Number*</label><input type="tel" id="prompt-phone" required placeholder="07XXXXXXXX or +2547XXXXXXXX"></div>
+        <button type="submit" class="btn-primary">Enter</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="view-banned" class="auth-wrapper hidden">
+    <div class="card">
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <span class="badge badge-banned" style="font-size: 0.85rem; padding: 0.35rem 1rem;">ACCOUNT BANNED</span>
+        <h2 style="color: var(--danger); margin-top: 0.75rem;">Access Restricted</h2>
+      </div>
+      <div class="alert alert-error">
+        <strong>Reason for Ban:</strong>
+        <p id="ban-reason-display" style="margin-top: 0.35rem;"></p>
+      </div>
+      <button id="show-unban-btn" onclick="openUnbanInstructions()" class="btn-primary" style="margin-bottom: 0.75rem;">Unban Account Request</button>
+
+      <div id="unban-instruction-panel" class="hidden" style="border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 0.75rem;">
+        <div class="alert alert-warning" style="font-size: 0.84rem;">
+          <strong>Unban Instructions:</strong> Username is compulsory, explain reason for ban and appeal, verify password.
+        </div>
+        <div id="unban-error" class="alert alert-error hidden"></div>
+        <div id="unban-success" class="alert alert-success hidden">Appeal sent successfully to Admin.</div>
+        <form id="unban-form">
+          <div class="form-group">
+            <label>Username*</label>
+            <input type="text" id="unban-username" readonly required>
+          </div>
+          <div class="form-group">
+            <label>Subject*</label>
+            <input type="text" id="unban-head" required>
+          </div>
+          <div class="form-group">
+            <label>Reason Why You Were Banned*</label>
+            <input type="text" id="unban-ban-reason" readonly required>
+          </div>
+          <div class="form-group">
+            <label>Why Do You Want to Be Unbanned?*</label>
+            <textarea id="unban-explanation" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Account Password*</label>
+            <input type="password" id="unban-password" required>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-bottom: 0.75rem;">Send Request to Admin</button>
+        </form>
+      </div>
+      <button type="button" onclick="logoutUser()" class="btn-outline" style="width: 100%;">Return to Login</button>
+    </div>
+  </div>
+
+  <div id="view-student" class="dashboard-layout hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="uni.png" onerror="this.src='https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQLVB4LaV5NBd-t32EHtIn0bskMD-x63nD3cSqgC5CCV2qaps83luKSg2TTys5YF3r2hxg65t9zWKnpX9U'" alt="Logo">
+        <span id="student-sidebar-title">STUDENT PORTAL</span>
+      </div>
+
+      <div class="nav-section-title">Navigation</div>
+      <button class="nav-item active" id="snav-profile" onclick="switchStudentTab('profile')">My Profile</button>
+
+      <div class="nav-section-title">Kisii University Portals</div>
+      <a class="nav-item" href="https://portal.kisiiuniversity.ac.ke/" target="_blank">University Student Portal</a>
+      <a class="nav-item" href="https://kisiiuniversity.ac.ke/library/library-website" target="_blank">University Library</a>
+      <a class="nav-item" href="https://elearning.kisiiuniversity.ac.ke/" target="_blank">University E-Learning</a>
+      <a class="nav-item" href="https://digital.kisiiuniversity.ac.ke/" target="_blank">University Huduma Bora</a>
+      <a class="nav-item" href="https://portal.kisiiuniversity.ac.ke/" target="_blank">University Examination Portal</a>
+
+      <div class="nav-section-title">Academics</div>
+      <button class="nav-item" id="snav-assignments" onclick="switchStudentTab('assignments')">Assignments</button>
+      <button class="nav-item" id="snav-attendance" onclick="switchStudentTab('attendance')">Attendance</button>
+      <button class="nav-item" id="snav-timetable" onclick="switchStudentTab('timetable')">Class Time Table</button>
+      <button class="nav-item" id="snav-noticeboard" onclick="switchStudentTab('noticeboard')">Noticeboard</button>
+
+      <div class="nav-section-title">Community & Groups</div>
+      <button class="nav-item" id="snav-report" onclick="switchStudentTab('report')">Report</button>
+      <button class="nav-item" id="snav-chat" onclick="switchStudentTab('chat')">Chat</button>
+      <button class="nav-item" id="snav-mygroup" onclick="switchStudentTab('mygroup')">My Study Group</button>
+      
+      <button class="nav-item hidden" id="class-rep-nav-btn" onclick="switchStudentTab('rep')">Class Rep Dashboard</button>
+      <button class="nav-item hidden" id="groupleader-nav-btn" onclick="switchStudentTab('groupleader')">Group Leader Dashboard</button>
+
+      <div class="sidebar-footer">
+        <div class="nav-section-title" style="padding-top: 0;">Change Mode</div>
+        <div class="theme-radio-group">
+          <label><input type="radio" name="theme-radio" value="white-mode" onchange="setThemeMode('white-mode')"> White</label>
+          <label><input type="radio" name="theme-radio" value="black-mode" onchange="setThemeMode('black-mode')"> Black</label>
+        </div>
+        <button class="nav-item" onclick="logoutUser()" style="color: #f87171;">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <h3 id="student-topbar-title">Student Dashboard</h3>
+        <div class="topbar-right">
+          <span id="student-topbar-name" style="font-weight: 600; font-size: 0.9rem;"></span>
+          <img id="student-topbar-avatar" class="topbar-avatar" src="" alt="Profile">
+          <button id="exit-view-as" class="btn-outline hidden" type="button" onclick="exitViewAsUser()">Return to Admin</button>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <div id="student-tab-profile" class="card">
+          <h3>My Profile</h3>
+          <form id="student-profile-form" style="max-width: 520px; margin-top: 1.25rem;">
+            <div class="form-group" style="display: flex; align-items: center; gap: 1.25rem;">
+              <img id="student-avatar-preview" class="avatar-preview" src="" alt="Avatar">
+              <div style="flex: 1;">
+                <label>Profile Picture</label>
+                <input type="file" id="student-avatar-file" accept="image/*">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input type="text" id="student-username-locked" disabled>
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="student-fname" disabled>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="student-lname" disabled>
+            </div>
+            <div class="form-group">
+              <label>Surname</label>
+              <input type="text" id="student-sname" disabled>
+            </div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="student-phone" disabled></div>
+            <div class="form-group"><label>Gmail / Email Address</label><input type="email" id="student-email" placeholder="example@gmail.com"></div>
+            <div class="form-group"><label>Other Contact (optional)</label><input type="text" id="student-other-contact" placeholder="Alternative contact or details"></div>
+
+            <div style="border-top: 1px solid var(--border); padding-top: 1.25rem; margin-top: 1.25rem;">
+              <h4 style="margin-bottom: 0.75rem;">Change Password</h4>
+              <div id="student-pass-msg" class="alert hidden"></div>
+              <div class="form-group">
+                <label>Previous Password*</label>
+                <input type="password" id="student-old-pass">
+              </div>
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="password" id="student-new-pass">
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">Save Profile & Password</button>
+          </form>
+        </div>
+
+        <div id="student-tab-assignments" class="card hidden">
+          <h3>Assignments</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="student-assignments-table"></table>
+          </div>
+        </div>
+
+        <div id="student-tab-attendance" class="card hidden">
+          <h3>Sessions</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="student-att-table"></table>
+          </div>
+        </div>
+
+        <div id="student-tab-timetable" class="card hidden">
+          <h3>Class & Examination Timetable</h3>
+          <div id="student-timetables-view" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div id="student-tab-noticeboard" class="card hidden">
+          <h3>Noticeboard</h3>
+          <div id="class-feed-list" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div id="student-tab-report" class="card hidden">
+          <h3>Submit Report</h3>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Select recipient, choose named or anonymous delivery, enter head message, message, attach local evidence file, and send.</p>
+          <form id="report-form" style="max-width: 600px;">
+            <div class="form-group">
+              <label>Report Recipient</label>
+              <select id="report-recipient" required>
+                <option value="class_rep">Class Rep / Prefect</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Submission Mode</label>
+              <select id="report-mode">
+                <option value="named">Named</option>
+                <option value="anonymous">Anonymous</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" id="report-head" required>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea id="report-message" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Evidence</label>
+              <input type="file" id="report-file-input">
+            </div>
+            <button type="submit" class="btn-primary">Send Report</button>
+          </form>
+        </div>
+
+        <div id="student-tab-chat" class="card hidden">
+          <h3>Anonymous Student Chat</h3>
+          <div id="chat-alias-setup" class="card" style="background: var(--bg); margin-top: 1rem;">
+            <h4>Create</h4>
+            <p style="font-size: 0.86rem; color: var(--muted); margin: 0.4rem 0 1rem;">Your real username and password are hidden in chat</p>
+            <div style="display: flex; gap: 0.75rem;">
+              <input type="text" id="chat-alias-input" placeholder="e.g. CodeNinja" style="flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px;">
+              <button onclick="saveChatAlias()" class="btn-primary" style="width: auto;">Username</button>
+            </div>
+          </div>
+          <div id="chat-room-container" class="hidden" style="margin-top: 1rem;">
+            <div style="margin-bottom: 0.75rem; font-size: 0.88rem; color: var(--muted);">Chatting as alias: <strong id="active-chat-alias" style="color: var(--primary);"></strong></div>
+            <div id="chat-messages" style="height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; background: var(--bg);"></div>
+            <form id="chat-send-form" style="display: flex; gap: 0.75rem;">
+              <input type="text" id="chat-text-input" placeholder="Message..." required style="flex: 1; padding: 0.72rem; border: 1px solid var(--border); border-radius: 8px;">
+              <button type="submit" class="btn-primary" style="width: auto;">Send</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="student-tab-mygroup" class="card hidden">
+          <h3>My Study Group</h3>
+          <div id="my-group-container" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div id="student-tab-rep" class="card hidden">
+          <h3>Class Rep Control Panel</h3>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Complete student roster, attendance tracking, timetable publishing, and analytics.</p>
+          
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+            <button onclick="switchRepSubTab('roster')" class="btn-outline" style="flex: 1;">Students</button>
+            <button onclick="switchRepSubTab('manageclass')" class="btn-outline" style="flex: 1;">Manage Class</button>
+            <button onclick="switchRepSubTab('timetables')" class="btn-outline" style="flex: 1;">Timetable</button>
+            <button onclick="switchRepSubTab('analytics')" class="btn-outline" style="flex: 1;">Class Analytics</button>
+          </div>
+
+          <div id="rep-subtab-roster">
+            <h4>All Students</h4>
+            <button onclick="downloadStudentList()" class="btn-primary" style="width: auto; margin: 0.75rem 0;">Download</button>
+            <div style="overflow-x: auto;">
+              <table class="table" id="rep-roster-table"></table>
+            </div>
+          </div>
+
+          <div id="rep-subtab-manageclass" class="hidden">
+            <h4>Start Attendance</h4>
+            <form id="rep-att-form" style="max-width: 500px; margin: 1rem 0;">
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="rep-att-unit" required>
+              </div>
+              <div class="form-group">
+                <label>Duration</label>
+                <input type="number" id="rep-att-duration" value="15" min="1" max="180" required>
+              </div>
+              <button type="submit" class="btn-primary">Launch Attendance</button>
+            </form>
+
+            <form id="rep-upload-form" style="max-width: 500px; margin: 1.5rem 0;">
+              <div class="form-group">
+                <label>Subject</label>
+                <input type="text" id="rep-up-title" required>
+              </div>
+              <div class="form-group">
+                <label>Choose File</label>
+                <input type="file" id="rep-up-file" required>
+              </div>
+              <button type="submit" class="btn-primary">Upload</button>
+            </form>
+          </div>
+
+          <div id="rep-subtab-timetables" class="hidden">
+            <h4>PublishTimetables</h4>
+            <form id="rep-timetable-form" style="max-width: 500px; margin: 1rem 0;">
+              <div class="form-group">
+                <label>Timetable Type</label>
+                <select id="rep-tt-type">
+                  <option value="Class Timetable">Class Timetable</option>
+                  <option value="Exam Timetable">Examination Timetable</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Heading</label>
+                <input type="text" id="rep-tt-title"  required>
+              </div>
+              <div class="form-group">
+                <label>Text Schedule (optional when a file is attached)</label>
+                <textarea id="rep-tt-content" rows="3" placeholder="Enter the timetable details here, or attach a timetable file below."></textarea>
+              </div>
+              <div class="form-group">
+                <label>Attach Timetable File (optional)</label>
+                <input type="file" id="rep-tt-file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.xls,.xlsx,.csv">
+              </div>
+              <button type="submit" class="btn-primary">Publish Timetable</button>
+            </form>
+          </div>
+
+          <div id="rep-subtab-analytics" class="hidden">
+            <h4>Class Analytics</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+              <div class="card" style="margin-bottom:0; background: var(--bg);">
+                <h4>Total Students</h4>
+                <p id="rep-stat-total" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">0</p>
+              </div>
+              <div class="card" style="margin-bottom:0; background: var(--bg);">
+                <h4>Banned Cases</h4>
+                <p id="rep-stat-bans" style="font-size: 1.5rem; font-weight: 700; color: var(--danger);">0</p>
+              </div>
+            </div>
+            <button onclick="alert('Analytics report downloaded successfully!')" class="btn-primary" style="width: auto;">Download</button>
+          </div>
+        </div>
+
+        <div id="student-tab-groupleader" class="card hidden">
+          <h3>Group Leader Panel(<span id="gl-group-num"></span>)</h3>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;"></p>
+          
+          <div class="card" style="background: var(--bg); margin-bottom: 1.5rem;">
+            <h4>Group Members (<span id="gl-member-count">0</span> / 10)</h4>
+            <div style="display: flex; gap: 0.75rem; margin: 0.75rem 0;">
+              <input type="text" id="gl-add-member-reg" placeholder="Enter Student Reg No" style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px;">
+              <button onclick="addGroupMember()" class="btn-primary" style="width: auto;">Add</button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="table" id="gl-members-table"></table>
+            </div>
+          </div>
+
+          <form id="gl-upload-form" style="max-width: 500px; margin-bottom: 1.5rem;">
+            <h4>Upload</h4>
+            <div class="form-group" style="margin-top: 0.75rem;">
+              <label>File</label>
+              <input type="text" id="gl-file-title" required>
+            </div>
+            <div class="form-group">
+              <label>Choose File from Device</label>
+              <input type="file" id="gl-file-input" required>
+            </div>
+            <button type="submit" class="btn-primary">Upload</button>
+          </form>
+
+          <form id="gl-timetable-form" style="max-width: 500px;">
+            <h4>Create Group Timetable</h4>
+            <div class="form-group" style="margin-top: 0.75rem;">
+              <label>Details</label>
+              <textarea id="gl-tt-desc" rows="3" placeholder="Group meeting or discussion schedule..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Publish Group Timetable</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-staff" class="dashboard-layout hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="uni.png" alt="Logo">
+        <span>STAFF PORTAL</span>
+      </div>
+      <div class="nav-section-title">Coursework</div>
+      <button class="nav-item active" id="stnav-assignments" onclick="switchStaffTab('assignments')">Assignments</button>
+      <button class="nav-item" id="stnav-attendance" onclick="switchStaffTab('attendance')">Attendance Links</button>
+      <button class="nav-item" id="stnav-reports" onclick="switchStaffTab('reports')">Reports Received</button>
+      <div class="sidebar-footer">
+        <div class="nav-section-title" style="padding-top: 0;">Change Mode</div>
+        <div class="theme-radio-group">
+          <label><input type="radio" name="theme-radio-staff" value="white-mode" onchange="setThemeMode('white-mode')"> White</label>
+          <label><input type="radio" name="theme-radio-staff" value="black-mode" onchange="setThemeMode('black-mode')"> Black</label>
+        </div>
+        <button class="nav-item" onclick="logoutUser()" style="color: #f87171;">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <h3 id="staff-welcome-title">Staff Dashboard</h3>
+      </header>
+      <div class="content-body">
+        <div id="staff-tab-assignments" class="card">
+          <h3>Create Assignment</h3>
+          <form id="create-assignment-form" style="max-width: 550px; margin: 1rem 0 2rem;">
+            <div class="form-group">
+              <label>Assignment Title</label>
+              <input type="text" id="ast-title" required>
+            </div>
+            <div class="form-group">
+              <label>Strict Deadline</label>
+              <input type="datetime-local" id="ast-deadline" required>
+            </div>
+            <button type="submit" class="btn-primary">Publish Assignment</button>
+          </form>
+          <h3>Published Assignments</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="staff-assignments-table"></table>
+          </div>
+        </div>
+
+        <div id="staff-tab-attendance" class="card hidden">
+          <h3>Generate Timed Attendance</h3>
+          <form id="create-att-form" style="max-width: 500px; margin: 1rem 0 2rem;">
+            <div class="form-group">
+              <label>Unit Code</label>
+              <input type="text" id="att-unit" required>
+            </div>
+            <div class="form-group">
+              <label>Duration (Minutes)</label>
+              <input type="number" id="att-duration" value="15" min="1" max="180" required>
+            </div>
+            <button type="submit" class="btn-primary">Start Session</button>
+          </form>
+          <h3>Attendance</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="staff-att-table"></table>
+          </div>
+        </div>
+
+        <div id="staff-tab-reports" class="card hidden">
+          <h3>Reports Received</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="staff-reports-table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-admin" class="dashboard-layout hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="uni.png" alt="Logo">
+        <span>ADMIN</span>
+      </div>
+      <div class="nav-section-title">Supreme Authority</div>
+      <button class="nav-item active" id="adnav-analysis" onclick="switchAdminTab('analysis')">Analytics & Reports</button>
+      <button class="nav-item" id="adnav-users" onclick="switchAdminTab('users')">All Users & Vault</button>
+      <button class="nav-item" id="adnav-students" onclick="switchAdminTab('students')">Students Directory</button>
+      <button class="nav-item" id="adnav-reps" onclick="switchAdminTab('reps')">Class Reps Management</button>
+      <button class="nav-item" id="adnav-groupleaders" onclick="switchAdminTab('groupleaders')">Group Leaders (1-30)</button>
+      <button class="nav-item" id="adnav-staff" onclick="switchAdminTab('staff')">Lecturers, CODs, Deans, VC</button>
+      <button class="nav-item" id="adnav-pending" onclick="switchAdminTab('pending')">Pending Approvals</button>
+      <button class="nav-item" id="adnav-provision" onclick="switchAdminTab('provision')">Manual User Provisioning</button>
+      <button class="nav-item" id="adnav-uploads" onclick="switchAdminTab('uploads')">Admin File Uploads</button>
+      <button class="nav-item" id="adnav-appeals" onclick="switchAdminTab('appeals')">Unban Requests</button>
+      <button class="nav-item" id="adnav-passwordrequests" onclick="switchAdminTab('passwordrequests')">Password Reset Requests</button>
+      <button class="nav-item" id="adnav-reports" onclick="switchAdminTab('reports')">Reports & Evidence</button>
+      <button class="nav-item" id="adnav-warnings" onclick="switchAdminTab('warnings')">Warnings Log</button>
+      <button class="nav-item" id="adnav-chats" onclick="switchAdminTab('chats')">Monitor & Delete Chats</button>
+      <div class="sidebar-footer">
+        <div class="nav-section-title" style="padding-top: 0;">Change Mode</div>
+        <div class="theme-radio-group">
+          <label><input type="radio" name="theme-radio-admin" value="white-mode" onchange="setThemeMode('white-mode')"> White</label>
+          <label><input type="radio" name="theme-radio-admin" value="black-mode" onchange="setThemeMode('black-mode')"> Black</label>
+        </div>
+        <button class="nav-item" onclick="logoutUser()" style="color: #f87171;">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <h3>Admin</h3>
+        <span class="badge badge-admin">SUPREME AUTHORITY</span>
+      </header>
+      <div class="content-body">
+        <div id="admin-tab-analysis" class="card">
+          <h3>Portal Analytics & Activity Reports</h3>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Monitor system-wide active usage, login frequencies, ban/unban logs, and export analytics documents.</p>
+          <div class="analytics-stat-grid">
+            <div class="card analytics-stat"><h4>Total portal users</h4><p id="stat-total-users">0</p></div>
+            <div class="card analytics-stat"><h4>Active accounts</h4><p id="stat-active-users">0</p></div>
+            <div class="card analytics-stat"><h4>Pending approvals</h4><p id="stat-pending-users">0</p></div>
+            <div class="card analytics-stat"><h4>Banned accounts</h4><p id="stat-bans">0</p></div>
+            <div class="card analytics-stat"><h4>Registered students</h4><p id="stat-total-students">0</p></div>
+          </div>
+          <div class="analytics-grid">
+            <div class="card analytics-panel"><h4>Account roles</h4><p class="analytics-note">Current users grouped by assigned role</p><div id="analytics-roles" class="analytics-chart"></div></div>
+            <div class="card analytics-panel"><h4>Account status</h4><p class="analytics-note">Current account status distribution</p><div id="analytics-status" class="analytics-chart"></div></div>
+            <div class="card analytics-panel"><h4>Registrations by month</h4><p class="analytics-note">Based on saved registration dates; legacy accounts without dates are excluded</p><div id="analytics-registrations" class="analytics-chart"></div></div>
+            <div class="card analytics-panel"><h4>Login activity — last 7 days</h4><p class="analytics-note">Recorded successful logins in this browser</p><div id="analytics-logins" class="analytics-chart"></div></div>
+            <div class="card analytics-panel"><h4>Group membership</h4><p class="analytics-note">Students assigned to each group</p><div id="analytics-groups" class="analytics-chart"></div></div>
+            <div class="card analytics-panel"><h4>Administrative actions</h4><p class="analytics-note">Recorded ban, unban, warning and removal actions</p><div id="analytics-actions" class="analytics-chart"></div></div>
+          </div>
+          <button onclick="downloadAnalyticsCSV()" class="btn-primary" style="width: auto;">Download Analytics Data (CSV)</button>
+        </div>
+
+        <div id="admin-tab-users" class="card hidden">
+          <h3>All Portal Users Vault</h3>
+          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Full authority over names, usernames, roles, and passwords.</p>
+          <input type="text" id="admin-search" placeholder="Search users..." oninput="renderAdminUsers()" style="padding: 0.65rem; width: 100%; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem;">
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-users-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-action-modal" class="card hidden" style="border: 2px solid var(--primary); margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+            <div>
+              <h3 id="admin-action-title" style="margin-bottom:0.25rem;">Admin Action</h3>
+              <p id="admin-action-target" style="color:var(--muted); margin:0;"></p>
+            </div>
+            <button type="button" onclick="closeAdminActionModal()" class="btn-outline">Cancel</button>
+          </div>
+          <form id="admin-action-form" style="max-width:600px; margin-top:1rem;">
+            <input type="hidden" id="admin-action-username">
+            <input type="hidden" id="admin-action-type">
+            <div class="form-group">
+              <label>Reason *</label>
+              <textarea id="admin-action-reason" rows="3" required placeholder="State the administrative reason clearly."></textarea>
+            </div>
+            <div class="form-group" id="admin-action-duration-group">
+              <label>Duration *</label>
+              <select id="admin-action-duration">
+                <option value="1h">1 hour</option>
+                <option value="6h">6 hours</option>
+                <option value="12h">12 hours</option>
+                <option value="1d">1 day</option>
+                <option value="3d">3 days</option>
+                <option value="7d">7 days</option>
+                <option value="14d">14 days</option>
+                <option value="30d">30 days</option>
+                <option value="permanent">Permanent</option>
+              </select>
+            </div>
+            <div class="form-group" id="admin-action-warning-level-group">
+              <label>Warning Level *</label>
+              <select id="admin-action-warning-level">
+                <option value="Notice">Notice</option>
+                <option value="First Warning">First Warning</option>
+                <option value="Final Warning">Final Warning</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Evidence File (optional)</label>
+              <input type="file" id="admin-action-evidence">
+              <small style="color:var(--muted); display:block; margin-top:0.35rem;">Optional. For this browser prototype, files are stored locally as browser data.</small>
+            </div>
+            <button type="submit" class="btn-primary" id="admin-action-submit">Apply Action</button>
+          </form>
+        </div>
+
+        <div id="admin-tab-students" class="card hidden">
+          <h3>Students Directory</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-students-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-reps" class="card hidden">
+          <h3>Class Reps Management & Appointment</h3>
+          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Enter a student registration number to appoint them as class prefect, or revoke status.</p>
+          <form id="appoint-rep-form" style="max-width: 450px; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label>Student Reg Number</label>
+              <input type="text" id="appoint-reg" placeholder="Enter Student Registration Number" required>
+            </div>
+            <button type="submit" class="btn-primary">Appoint as Class Prefect</button>
+          </form>
+          <h4>Current Class Reps</h4>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-reps-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-groupleaders" class="card hidden">
+          <h3>Group Leaders Management </h3>
+          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Assign exactly one leader per group number (1 to 30).</p>
+          <form id="appoint-gl-form" style="max-width: 450px; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label>Group Number</label>
+              <input type="number" id="gl-num-input" min="1" max="30" required>
+            </div>
+            <div class="form-group">
+              <label>Student Reg Number</label>
+              <input type="text" id="gl-reg-input" required>
+            </div>
+            <button type="submit" class="btn-primary">Assign Group Leader</button>
+          </form>
+          <h4>All Group Leaders</h4>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-gl-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-staff" class="card hidden">
+          <h3>Lecturers, CODs, Deans, & VC</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-staff-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-pending" class="card hidden">
+          <h3>Pending Student Registrations</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-pending-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-provision" class="card hidden">
+          <h3>Manual User Provisioning (Staff, VC, Dean, Student, etc.)</h3>
+          <form id="manual-staff-form" style="max-width: 500px; margin-top: 1rem;">
+            <div class="form-group">
+              <label>Username / Reg Number</label>
+              <input type="text" id="manual-username" required>
+            </div>
+            <div class="form-group">
+              <label>Full Names</label>
+              <input type="text" id="manual-fullname" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="text" id="manual-password" required>
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <select id="manual-role">
+                <option value="student">Student</option>
+                <option value="class_rep">Class Rep / Prefect</option>
+                <option value="lecturer">Lecturer</option>
+                <option value="cod">COD</option>
+                <option value="dean">Dean</option>
+                <option value="vc">VC</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary">Create User Manually</button>
+          </form>
+        </div>
+
+        <div id="admin-tab-uploads" class="card hidden">
+          <h3>Admin File Uploads for Students</h3>
+          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Upload notices, resources, or files that will be broadcast to all students.</p>
+          <form id="admin-upload-form" style="max-width: 500px; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label>Notice</label>
+              <input type="text" id="admin-up-title" required>
+            </div>
+            <div class="form-group">
+              <label>Choose File from Device</label>
+              <input type="file" id="admin-up-file" required>
+            </div>
+            <button type="submit" class="btn-primary">Publish</button>
+          </form>
+        </div>
+
+        <div id="admin-tab-passwordrequests" class="card hidden">
+          <h3>Password Reset Requests</h3>
+          <p style="color:var(--muted);font-size:.86rem;">Generate a one-time code, then use the email link to send it to the student. The student enters the code and their password is reset to their username as requested.</p>
+          <div style="overflow-x:auto;"><table class="table" id="admin-password-requests-table"></table></div>
+        </div>
+
+        <div id="admin-tab-appeals" class="card hidden">
+          <h3>Unban Requests</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-appeals-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-reports" class="card hidden">
+          <h3>Evidence</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-reports-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-warnings" class="card hidden">
+          <h3>Warnings Log</h3>
+          <form id="warning-form" style="max-width: 500px; margin-bottom: 1.5rem;">
+            <div class="form-group">
+              <label>Reg No</label>
+              <input type="text" id="warn-username" required>
+            </div>
+            <div class="form-group">
+              <label>Reason</label>
+              <textarea id="warn-msg" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Warning Level</label>
+              <select id="warn-level">
+                <option value="Notice">Notice</option>
+                <option value="First Warning">First Warning</option>
+                <option value="Final Warning">Final Warning</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Evidence File (optional)</label>
+              <input type="file" id="warn-file">
+            </div>
+            <button type="submit" class="btn-primary">Issue Warning</button>
+          </form>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-warnings-table"></table>
+          </div>
+        </div>
+
+        <div id="admin-tab-chats" class="card hidden">
+          <h3>Monitor</h3>
+          <div style="overflow-x: auto;">
+            <table class="table" id="admin-chats-table"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="ai-fab" onclick="toggleAiChat()">Help</button>
+  <div id="ai-chat-window" class="ai-window hidden">
+    <div class="ai-header">
+      <div>
+        <strong style="font-size: 0.95rem;">AI</strong>
+        <div style="font-size: 0.72rem; color: #94a3b8;"><a href="mailto:kisiiit2025@email.com?subject=Student%20Portal%20Help" style="color:#cbd5e1;text-decoration:underline;">help</a></div>
+      </div>
+      <button onclick="toggleAiChat()" style="background: transparent; color: #ffffff; padding: 0.2rem 0.5rem; font-size: 1.1rem;">&times;</button>
+    </div>
+    <div id="ai-chat-body" class="ai-body">
+      <div class="ai-msg bot">Hello! Ask me how to log in, unban your account, submit reports, or use the portal.</div>
+    </div>
+    <form id="ai-chat-form" class="ai-footer">
+      <input type="text" id="ai-input" placeholder="Ask question..." required>
+      <button type="submit" class="btn-primary" style="width: auto; padding: 0.5rem 0.9rem;">Ask</button>
+    </form>
+  </div>
+
+  <div id="admin-user-detail-modal" class="card hidden" style="position:fixed;z-index:10000;inset:5% 5%;max-width:850px;margin:auto;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);border:2px solid var(--primary);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;"><h3 style="margin:0;">User Details</h3><button type="button" class="btn-outline" onclick="closeUserDetail()">Close</button></div>
+    <div id="admin-user-detail-content" style="margin-top:1rem;"></div>
+  </div>
+  <div id="admin-user-detail-backdrop" class="hidden" onclick="closeUserDetail()" style="position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.55);"></div>
+
+  <script>
+    const defaultAvatar = "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR9CQ55uvQwb_WFiQRReqsgxWJxJRFss1yTLC7I8mNlG7-U5m7EUR09yvJxQvIIiL8gE7ivuAPE3Qzu4ck";
+
+    function initializeSystem() {
+      if (!localStorage.getItem("IT_portal_users")) {
+        const users = [
+          { username: "admin", password: "admin", role: "admin", status: "active", year: "Staff", firstName: "System", lastName: "Admin", surname: "", avatar: "", chatAlias: "MasterAdmin" }
+        ];
+        for (let i = 1; i <= 310; i++) {
+          const numStr = String(i).padStart(5, '0');
+          const regNo = `IN17/${numStr}/25`;
+          users.push({
+            username: regNo,
+            password: regNo,
+            role: "student",
+            status: "active",
+            year: "2.1",
+            firstName: "Student",
+            lastName: numStr,
+            surname: "",
+            avatar: "",
+            chatAlias: ""
+          });
+        }
+        localStorage.setItem("IT_portal_users", JSON.stringify(users));
+      }
+
+      if (!localStorage.getItem("IT_portal_assignments")) {
+        localStorage.setItem("IT_portal_assignments", JSON.stringify([
+          { id: 1, title: "Lab 1: Algorithm Complexity", deadline: "2027-01-15T23:59", author: "admin" }
+        ]));
+      }
+
+      if (!localStorage.getItem("IT_portal_submissions")) localStorage.setItem("IT_portal_submissions", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_attendance")) localStorage.setItem("IT_portal_attendance", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_appeals")) localStorage.setItem("IT_portal_appeals", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_rep_posts")) localStorage.setItem("IT_portal_rep_posts", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_reports")) localStorage.setItem("IT_portal_reports", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_chats")) localStorage.setItem("IT_portal_chats", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_warnings")) localStorage.setItem("IT_portal_warnings", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_group_leaders")) localStorage.setItem("IT_portal_group_leaders", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_group_members")) localStorage.setItem("IT_portal_group_members", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_group_files")) localStorage.setItem("IT_portal_group_files", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_timetables")) localStorage.setItem("IT_portal_timetables", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_admin_audit")) localStorage.setItem("IT_portal_admin_audit", JSON.stringify([]));
+      if (!localStorage.getItem("IT_portal_admin_files")) localStorage.setItem("IT_portal_admin_files", JSON.stringify([]));
+    }
+    initializeSystem();
+
+    function getUsers() {
+      let users = JSON.parse(localStorage.getItem("IT_portal_users") || "[]");
+      let changed = false;
+      users = users.map(u => {
+        if (u.status === "banned" && u.banUntil && Date.now() >= u.banUntil) {
+          changed = true;
+          return { ...u, status: "active", banReason: null, banUntil: null, banEvidence: "" };
+        }
+        if (u.status === "removed" && u.removeUntil && Date.now() >= u.removeUntil) {
+          changed = true;
+          return { ...u, status: "active", removeReason: null, removeUntil: null, removeEvidence: "" };
+        }
+        return u;
+      });
+      if (changed) localStorage.setItem("IT_portal_users", JSON.stringify(users));
+      return users;
+    }
+    function saveUsers(users) { localStorage.setItem("IT_portal_users", JSON.stringify(users)); }
+    function escapeHTML(value) { return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch])); }
+    function readLocalFile(file, callback, maxBytes = 4 * 1024 * 1024) {
+      if (!file) { callback(null); return; }
+      if (file.size > maxBytes) { alert("File is too large. Please choose a file of 4 MB or less."); callback(false); return; }
+      const reader = new FileReader();
+      reader.onload = () => callback({ filename: file.name, fileType: file.type || "application/octet-stream", fileData: reader.result });
+      reader.onerror = () => { alert("The selected file could not be read."); callback(false); };
+      reader.readAsDataURL(file);
+    }
+    function getSession() {
+      const data = sessionStorage.getItem("IT_active_session");
+      return data ? JSON.parse(data) : null;
+    }
+    function setSession(user) { sessionStorage.setItem("IT_active_session", JSON.stringify(user)); }
+    function clearSession() { sessionStorage.removeItem("IT_active_session"); }
+
+    function setThemeMode(mode) {
+      const body = document.body;
+      body.classList.remove("white-mode", "black-mode");
+      body.classList.add(mode);
+      localStorage.setItem("IT_theme", mode);
+      document.querySelectorAll(`input[value="${mode}"]`).forEach(r => r.checked = true);
+    }
+
+    const savedTheme = localStorage.getItem("IT_theme") || "white-mode";
+    setThemeMode(savedTheme);
+
+    function switchView(viewName) {
+      ["view-login", "view-register", "view-forgot", "view-name-prompt", "view-banned", "view-admin", "view-staff", "view-student"].forEach(v => {
+        document.getElementById(v).classList.add("hidden");
+      });
+      document.getElementById(`view-${viewName}`).classList.remove("hidden");
+      const isDashboard = ["admin", "staff", "student"].includes(viewName);
+      if (isDashboard) {
+        document.getElementById("auth-top-bar").classList.add("hidden");
+      } else {
+        document.getElementById("auth-top-bar").classList.remove("hidden");
+      }
+    }
+
+    function checkActiveSession() {
+      const session = getSession();
+      if (!session) {
+        switchView("login");
+        return;
+      }
+
+      const users = getUsers();
+      const user = users.find(u => u.username === session.username);
+      if (!user || user.status === "banned" || user.status === "removed") {
+        clearSession();
+        if (user) showBannedScreen(user);
+        else switchView("login");
+        return;
+      }
+
+      if (user.role === "student" && (!user.firstName || !user.lastName || !user.phone)) {
+        switchView("name-prompt");
+        return;
+      }
+
+      document.querySelectorAll(`input[value="${localStorage.getItem("IT_theme") || "white-mode"}"]`).forEach(r => r.checked = true);
+
+      if (user.role === "admin") {
+        switchView("admin");
+        renderAdminUsers();
+        renderAdminStudents();
+        renderAdminReps();
+        renderAdminGroupLeaders();
+        renderAdminStaff();
+        renderAdminPending();
+        renderAdminAppeals();
+        renderAdminPasswordRequests();
+        renderAdminReports();
+        renderAdminWarnings();
+        renderAdminChats();
+        renderAdminAnalytics();
+      } else if (["lecturer", "cod", "dean", "vc"].includes(user.role)) {
+        switchView("staff");
+        document.getElementById("staff-welcome-title").textContent = `${user.role.toUpperCase()} Portal — ${user.firstName || user.username}`;
+        renderStaffAssignments();
+        renderStaffAttendance();
+        renderStaffReports();
+      } else if (user.role === "student" || user.role === "class_rep") {
+        switchView("student");
+        document.getElementById("student-sidebar-title").textContent = user.role === "class_rep" ? "CLASS REP PORTAL" : "STUDENT PORTAL";
+        document.getElementById("student-topbar-name").textContent = `${user.firstName} ${user.lastName} (${user.username})`;
+        const avatarSrc = user.avatar || defaultAvatar;
+        document.getElementById("student-topbar-avatar").src = avatarSrc;
+        document.getElementById("student-avatar-preview").src = avatarSrc;
+
+        document.getElementById("student-username-locked").value = user.username;
+        document.getElementById("student-fname").value = user.firstName;
+        document.getElementById("student-lname").value = user.lastName;
+        document.getElementById("student-sname").value = user.surname || "";
+        document.getElementById("student-phone").value = user.phone || "";
+        document.getElementById("student-email").value = user.email || "";
+        document.getElementById("student-other-contact").value = user.otherContact || "";
+
+        if (user.role === "class_rep") {
+          document.getElementById("class-rep-nav-btn").classList.remove("hidden");
+        } else {
+          document.getElementById("class-rep-nav-btn").classList.add("hidden");
+        }
+
+        const groupLeaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders"));
+        const myGl = groupLeaders.find(g => g.username === user.username);
+        if (myGl) {
+          document.getElementById("groupleader-nav-btn").classList.remove("hidden");
+        } else {
+          document.getElementById("groupleader-nav-btn").classList.add("hidden");
+        }
+
+        if (user.chatAlias) {
+          document.getElementById("chat-alias-setup").classList.add("hidden");
+          document.getElementById("chat-room-container").classList.remove("hidden");
+          document.getElementById("active-chat-alias").textContent = user.chatAlias;
+          renderChatMessages();
+        } else {
+          document.getElementById("chat-alias-setup").classList.remove("hidden");
+          document.getElementById("chat-room-container").classList.add("hidden");
+        }
+
+        renderStudentAssignments();
+        renderStudentAttendance();
+        renderStudentTimetables();
+        renderClassFeed();
+        renderMyGroupView();
+      }
+    }
+
+    function showBannedScreen(user) {
+      const reason = user.banReason || "Policy violation.";
+      document.getElementById("ban-reason-display").textContent = reason;
+      document.getElementById("unban-username").value = user.username;
+      document.getElementById("unban-ban-reason").value = reason;
+      document.getElementById("unban-instruction-panel").classList.add("hidden");
+      switchView("banned");
+    }
+
+    function openUnbanInstructions() {
+      document.getElementById("unban-instruction-panel").classList.remove("hidden");
+    }
+
+    document.getElementById("login-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const uInput = document.getElementById("login-username").value.trim();
+      const pInput = document.getElementById("login-password").value;
+      const errBox = document.getElementById("login-error");
+      errBox.classList.add("hidden");
+
+      const users = getUsers();
+      const userByUsername = users.find(u => u.username === uInput);
+
+      if (userByUsername && userByUsername.status === "banned") {
+        clearSession();
+        showBannedScreen(userByUsername);
+        return;
+      }
+
+      if (userByUsername && userByUsername.status === "removed") {
+        clearSession();
+        errBox.textContent = userByUsername.removeUntil ? `Account access is temporarily removed until ${new Date(userByUsername.removeUntil).toLocaleString()}. Reason: ${userByUsername.removeReason || "Administrative action."}` : "Account access has been removed.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      const user = users.find(u => u.username === uInput && u.password === pInput);
+      if (!user) {
+        errBox.textContent = "Invalid username or password.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      if (user.status === "pending") {
+        errBox.textContent = "Account awaiting Admin approval.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      setSession(user);
+      recordSuccessfulLogin(user.username);
+      checkActiveSession();
+    });
+
+    document.getElementById("unban-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("unban-username").value.trim();
+      const head = document.getElementById("unban-head").value.trim();
+      const banReason = document.getElementById("unban-ban-reason").value.trim();
+      const explanation = document.getElementById("unban-explanation").value.trim();
+      const pass = document.getElementById("unban-password").value;
+
+      const users = getUsers();
+      const targetUser = users.find(u => u.username === username);
+
+      if (!targetUser || targetUser.password !== pass) {
+        document.getElementById("unban-error").textContent = "Incorrect password verification.";
+        document.getElementById("unban-error").classList.remove("hidden");
+        return;
+      }
+
+      const appeals = JSON.parse(localStorage.getItem("IT_portal_appeals"));
+      appeals.push({ id: Date.now(), username, head, banReason, explanation, status: "pending", date: new Date().toLocaleString() });
+      localStorage.setItem("IT_portal_appeals", JSON.stringify(appeals));
+
+      document.getElementById("unban-success").classList.remove("hidden");
+      document.getElementById("unban-form").reset();
+      setTimeout(() => { document.getElementById("unban-instruction-panel").classList.add("hidden"); switchView("login"); }, 1800);
+    });
+
+    document.getElementById("reg-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const u = document.getElementById("reg-username").value.trim();
+      const fname = document.getElementById("reg-firstname").value.trim();
+      const lname = document.getElementById("reg-lastname").value.trim();
+      const sname = document.getElementById("reg-surname").value.trim();
+      const phone = document.getElementById("reg-phone").value.trim();
+      const p = document.getElementById("reg-password").value;
+      const c = document.getElementById("reg-confirm").value;
+      const yr = document.getElementById("reg-year").value.trim();
+      const errBox = document.getElementById("reg-error");
+      errBox.classList.add("hidden");
+
+      if (!/^((\+254|0)7\d{8}|(\+254|0)1\d{8})$/.test(phone.replace(/[\s-]/g, ""))) {
+        errBox.textContent = "Enter a valid Kenyan phone number, e.g. 0712345678 or +254712345678.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      if (p !== c) {
+        errBox.textContent = "Passwords do not match.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      const allowedYears = ["Year 2.1", "Year 2.2", "Year 3.1", "Year 3.2", "Year 4.1", "Year 4.2"];
+      if (!allowedYears.includes(yr)) {
+        errBox.textContent = "Invalid year format. Must match active periods like 'Year 2.1'.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      const users = getUsers();
+      if (users.some(x => x.username === u)) {
+        errBox.textContent = "Username already exists.";
+        errBox.classList.remove("hidden");
+        return;
+      }
+
+      users.push({
+        username: u,
+        password: p,
+        role: "student",
+        status: "pending",
+        createdAt: Date.now(),
+        year: yr,
+        firstName: fname,
+        lastName: lname,
+        surname: sname,
+        phone: phone.replace(/[\s-]/g, ""),
+        email: "",
+        otherContact: "",
+        avatar: "",
+        chatAlias: ""
+      });
+      saveUsers(users);
+      alert("Registration submitted! Awaiting Admin approval.");
+      switchView("login");
+    });
+
+    document.getElementById("name-prompt-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const fname = document.getElementById("prompt-firstname").value.trim();
+      const lname = document.getElementById("prompt-lastname").value.trim();
+      const sname = document.getElementById("prompt-surname").value.trim();
+      const phone = document.getElementById("prompt-phone").value.trim();
+      const session = getSession();
+      if (!/^((\+254|0)7\d{8}|(\+254|0)1\d{8})$/.test(phone.replace(/[\s-]/g, ""))) { alert("Enter a valid Kenyan phone number."); return; }
+      let users = getUsers();
+      users = users.map(u => u.username === session.username ? { ...u, firstName: fname, lastName: lname, surname: sname, phone: phone.replace(/[\s-]/g, "") } : u);
+      saveUsers(users);
+      checkActiveSession();
+    });
+
+    function openForgotPassword() {
+      document.getElementById("forgot-message").className = "alert hidden";
+      document.getElementById("forgot-request-form").classList.remove("hidden");
+      document.getElementById("forgot-verify-form").classList.add("hidden");
+      switchView("forgot");
+    }
+
+    document.getElementById("forgot-request-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("forgot-username").value.trim();
+      const email = document.getElementById("forgot-email").value.trim();
+      const user = getUsers().find(u => u.username === username);
+      const msg = document.getElementById("forgot-message");
+      if (!user || user.status === "removed") { msg.className = "alert alert-error"; msg.textContent = "We could not find an active account with those details."; msg.classList.remove("hidden"); return; }
+      const requests = JSON.parse(localStorage.getItem("IT_portal_password_requests") || "[]");
+      const request = { id: Date.now(), username, email: email || user.email || "", status: "pending", date: new Date().toLocaleString(), code: "", expires: 0 };
+      requests.push(request);
+      localStorage.setItem("IT_portal_password_requests", JSON.stringify(requests));
+      document.getElementById("forgot-request-form").classList.add("hidden");
+      msg.className = "alert alert-success";
+      msg.textContent = "Your request has been recorded. Contact the administrator using the Help email link. Once the administrator sends you a code, enter it below.";
+      msg.classList.remove("hidden");
+      document.getElementById("forgot-verify-form").classList.remove("hidden");
+    });
+
+    document.getElementById("forgot-verify-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("forgot-username").value.trim();
+      const code = document.getElementById("forgot-code").value.trim();
+      const requests = JSON.parse(localStorage.getItem("IT_portal_password_requests") || "[]");
+      const request = [...requests].reverse().find(r => r.username === username && r.status === "code_sent");
+      const msg = document.getElementById("forgot-message");
+      if (!request || request.code !== code || Date.now() > request.expires) { msg.className = "alert alert-error"; msg.textContent = "The verification code is incorrect, expired, or has not yet been issued."; msg.classList.remove("hidden"); return; }
+      const users = getUsers().map(u => u.username === username ? { ...u, password: u.username, mustChangePassword: true } : u);
+      saveUsers(users);
+      request.status = "completed"; request.code = ""; request.completedAt = new Date().toLocaleString();
+      localStorage.setItem("IT_portal_password_requests", JSON.stringify(requests));
+      msg.className = "alert alert-success"; msg.textContent = `Password reset successfully. Your temporary password is your username: ${username}. Please change it after logging in.`; msg.classList.remove("hidden");
+      document.getElementById("forgot-verify-form").classList.add("hidden");
+    });
+
+    function renderAdminPasswordRequests() {
+      const table = document.getElementById("admin-password-requests-table");
+      if (!table) return;
+      const requests = JSON.parse(localStorage.getItem("IT_portal_password_requests") || "[]");
+      table.innerHTML = `<tr><th>Username</th><th>Email</th><th>Date</th><th>Status</th><th>Action</th></tr>`;
+      requests.slice().reverse().forEach(r => {
+        const action = r.status === "pending" ? `<button class="btn-primary" onclick="issuePasswordResetCode(${r.id})" style="padding:.35rem .55rem;">Generate code & email</button>` : `<span>${escapeHTML(r.status)}</span>`;
+        table.innerHTML += `<tr><td>${escapeHTML(r.username)}</td><td>${escapeHTML(r.email || "Not supplied")}</td><td>${escapeHTML(r.date)}</td><td>${escapeHTML(r.status)}</td><td>${action}</td></tr>`;
+      });
+    }
+
+    function issuePasswordResetCode(id) {
+      const requests = JSON.parse(localStorage.getItem("IT_portal_password_requests") || "[]");
+      const request = requests.find(r => r.id === id && r.status === "pending");
+      if (!request) return;
+      const randomValue = new Uint32Array(1); crypto.getRandomValues(randomValue); const code = String(100000 + (randomValue[0] % 900000));
+      request.code = code; request.status = "code_sent"; request.expires = Date.now() + 15 * 60 * 1000;
+      localStorage.setItem("IT_portal_password_requests", JSON.stringify(requests));
+      const user = getUsers().find(u => u.username === request.username);
+      const email = request.email || user?.email || "kisiiit2025@email.com";
+      const subject = encodeURIComponent("Student Portal Password Reset Verification Code");
+      const body = encodeURIComponent(`Hello ${getUserDisplayName(request.username)},\n\nYour password reset verification code is: ${code}\nIt expires in 15 minutes.\nAfter verification, your temporary password will be your username.\n\nPortal Administrator`);
+      alert(`Verification code generated: ${code}\nSend it to the student privately using the email that opens next. This demo cannot send email by itself.`);
+      window.location.href = `mailto:${encodeURIComponent(email)}?subject=${subject}&body=${body}`;
+      renderAdminPasswordRequests();
+    }
+
+    function logoutUser() {
+      if (sessionStorage.getItem("IT_view_as_user") === "true") { exitViewAsUser(); return; }
+      clearSession();
+      switchView("login");
+    }
+
+    function switchStudentTab(tab) {
+      ["profile", "assignments", "attendance", "timetable", "noticeboard", "report", "chat", "mygroup", "rep", "groupleader"].forEach(t => {
+        const el = document.getElementById(`student-tab-${t}`);
+        if (el) el.classList.add("hidden");
+        const btn = document.getElementById(`snav-${t}`);
+        if (btn) btn.classList.remove("active");
+      });
+      const target = document.getElementById(`student-tab-${tab}`);
+      if (target) target.classList.remove("hidden");
+      const activeBtn = document.getElementById(`snav-${tab}`) || document.getElementById(`${tab}-nav-btn`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      if (tab === 'rep') renderRepRoster();
+      if (tab === 'groupleader') renderGroupLeaderPanel();
+    }
+
+    document.getElementById("student-profile-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const session = getSession();
+      const fileInput = document.getElementById("student-avatar-file");
+      const oldPass = document.getElementById("student-old-pass").value;
+      const newPass = document.getElementById("student-new-pass").value;
+      const email = document.getElementById("student-email").value.trim();
+      const otherContact = document.getElementById("student-other-contact").value.trim();
+      const msgBox = document.getElementById("student-pass-msg");
+      msgBox.classList.add("hidden");
+
+      let users = getUsers();
+      const currentUser = users.find(u => u.username === session.username);
+
+      if (newPass) {
+        if (!oldPass || oldPass !== currentUser.password) {
+          msgBox.className = "alert alert-error";
+          msgBox.textContent = "Previous password is incorrect.";
+          msgBox.classList.remove("hidden");
+          return;
+        }
+      }
+
+      const updateProfileData = (avatarUrl) => {
+        users = users.map(u => {
+          if (u.username === session.username) {
+            return {
+              ...u,
+              avatar: avatarUrl !== null ? avatarUrl : u.avatar,
+              email,
+              otherContact,
+              password: newPass ? newPass : u.password
+            };
+          }
+          return u;
+        });
+        saveUsers(users);
+        alert("Profile updated successfully!");
+        checkActiveSession();
+      };
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          updateProfileData(e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        updateProfileData(null);
+      }
+    });
+
+    function renderStudentAssignments() {
+      const assignments = JSON.parse(localStorage.getItem("IT_portal_assignments"));
+      const subs = JSON.parse(localStorage.getItem("IT_portal_submissions"));
+      const session = getSession();
+      const table = document.getElementById("student-assignments-table");
+      table.innerHTML = `<tr><th>Assignment</th><th>Deadline</th><th>Status</th><th>Action</th></tr>`;
+
+      assignments.forEach(a => {
+        const isPast = Date.now() > new Date(a.deadline).getTime();
+        const mySub = subs.find(s => s.assignmentId === a.id && s.student === session.username);
+        table.innerHTML += `
+          <tr>
+            <td>${a.title}</td>
+            <td>${new Date(a.deadline).toLocaleString()}</td>
+            <td>${mySub ? '<span class="badge badge-student">Submitted</span>' : (isPast ? '<span class="badge badge-banned">Closed</span>' : '<span class="badge badge-pending">Open</span>')}</td>
+            <td>${mySub ? 'Done' : (isPast ? 'Closed' : `<button onclick="submitAssignment(${a.id})" class="btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; width: auto;">Submit</button>`)}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function submitAssignment(assignmentId) {
+      const assignments = JSON.parse(localStorage.getItem("IT_portal_assignments"));
+      const a = assignments.find(x => x.id === assignmentId);
+      if (Date.now() > new Date(a.deadline).getTime()) { alert("Deadline passed."); return; }
+      const session = getSession();
+      let subs = JSON.parse(localStorage.getItem("IT_portal_submissions"));
+      subs.push({ assignmentId: a.id, assignmentTitle: a.title, student: session.username, time: Date.now(), grade: null });
+      localStorage.setItem("IT_portal_submissions", JSON.stringify(subs));
+      renderStudentAssignments();
+      alert("Submitted successfully!");
+    }
+
+    function renderStudentAttendance() {
+      const att = JSON.parse(localStorage.getItem("IT_portal_attendance"));
+      const session = getSession();
+      const table = document.getElementById("student-att-table");
+      table.innerHTML = `<tr><th>Unit</th><th>Time Left</th><th>Action</th></tr>`;
+      att.forEach(a => {
+        const left = Math.max(0, Math.floor((a.expiresAt - Date.now()) / 1000));
+        const signed = a.attendees.includes(session.username);
+        table.innerHTML += `
+          <tr>
+            <td>${a.unit}</td>
+            <td>${left > 0 ? left + 's' : 'Expired'}</td>
+            <td>${signed ? 'Present' : (left > 0 ? `<button onclick="signAtt(${a.id})" class="btn-success" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Sign</button>` : 'Closed')}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function signAtt(attId) {
+      let att = JSON.parse(localStorage.getItem("IT_portal_attendance"));
+      const session = getSession();
+      att = att.map(item => {
+        if (item.id === attId && Date.now() < item.expiresAt && !item.attendees.includes(session.username)) {
+          item.attendees.push(session.username);
+        }
+        return item;
+      });
+      localStorage.setItem("IT_portal_attendance", JSON.stringify(att));
+      renderStudentAttendance();
+      alert("Attendance marked!");
+    }
+
+    function renderStudentTimetables() {
+      const tts = JSON.parse(localStorage.getItem("IT_portal_timetables"));
+      const container = document.getElementById("student-timetables-view");
+      container.innerHTML = tts.length ? "" : "<p style='color:var(--muted);'>No timetables published yet.</p>";
+      tts.slice().reverse().forEach(t => {
+        const fileLink = t.fileData ? `<p style="margin-top:0.75rem;"><a href="${t.fileData}" download="${t.filename || 'timetable-file'}" class="btn-outline" style="display:inline-block; text-decoration:none;">Open / Download ${t.filename || 'Timetable File'}</a></p>` : "";
+        container.innerHTML += `
+          <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 0.85rem; background: var(--card);">
+            <span class="badge badge-staff">${t.type}</span>
+            <h4 style="margin-top: 0.5rem;">${t.title}</h4>
+            ${t.content ? `<p style="margin-top: 0.25rem; font-size: 0.92rem; white-space: pre-wrap;">${t.content}</p>` : ""}
+            ${fileLink}
+            <small style="color: var(--muted); display: block; margin-top: 0.5rem;">Published on ${t.date}</small>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById("report-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const session = getSession();
+      const recipient = document.getElementById("report-recipient").value;
+      const mode = document.getElementById("report-mode").value;
+      const head = document.getElementById("report-head").value.trim();
+      const message = document.getElementById("report-message").value.trim();
+      const fileInput = document.getElementById("report-file-input");
+
+      const processReportSubmission = (fileName) => {
+        let reports = JSON.parse(localStorage.getItem("IT_portal_reports"));
+        reports.push({
+          sender: session.username,
+          senderName: `${session.firstName} ${session.lastName}`,
+          recipient,
+          mode,
+          head,
+          message,
+          file: fileName,
+          date: new Date().toLocaleString()
+        });
+        localStorage.setItem("IT_portal_reports", JSON.stringify(reports));
+        document.getElementById("report-form").reset();
+        alert("Report sent successfully!");
+      };
+
+      if (fileInput.files && fileInput.files[0]) {
+        processReportSubmission(fileInput.files[0].name);
+      } else {
+        processReportSubmission("No file attached");
+      }
+    });
+
+    function saveChatAlias() {
+      const alias = document.getElementById("chat-alias-input").value.trim();
+      if (!alias) { alert("Enter chat alias."); return; }
+      const session = getSession();
+      let users = getUsers();
+      if (users.some(u => u.chatAlias === alias)) { alert("Alias already taken."); return; }
+
+      users = users.map(u => u.username === session.username ? { ...u, chatAlias: alias } : u);
+      saveUsers(users);
+      alert("Chat alias saved!");
+      checkActiveSession();
+    }
+
+    document.getElementById("chat-send-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const text = document.getElementById("chat-text-input").value.trim();
+      const session = getSession();
+      const users = getUsers();
+      const user = users.find(u => u.username === session.username);
+
+      let chats = JSON.parse(localStorage.getItem("IT_portal_chats"));
+      chats.push({ id: Date.now(), alias: user.chatAlias, text, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+      localStorage.setItem("IT_portal_chats", JSON.stringify(chats));
+      document.getElementById("chat-text-input").value = "";
+      renderChatMessages();
+    });
+
+    function renderChatMessages() {
+      const chats = JSON.parse(localStorage.getItem("IT_portal_chats"));
+      const box = document.getElementById("chat-messages");
+      box.innerHTML = "";
+      chats.forEach(c => {
+        box.innerHTML += `<div style="margin-bottom: 0.6rem; font-size: 0.9rem; background: var(--card); padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border);"><strong>@${c.alias}</strong>: ${c.text} <small style="color: var(--muted); float: right;">${c.time}</small></div>`;
+      });
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function renderClassFeed() {
+      const posts = JSON.parse(localStorage.getItem("IT_portal_rep_posts"));
+      const adminFiles = JSON.parse(localStorage.getItem("IT_portal_admin_files") || "[]");
+      const feed = document.getElementById("class-feed-list");
+      feed.innerHTML = "";
+
+      adminFiles.forEach(f => {
+        feed.innerHTML += `
+          <div style="border: 1px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 0.85rem; background: var(--card);">
+            <span class="badge badge-admin">Admin Broadcast</span>
+            <h4 style="margin-top: 0.5rem;">${f.title}</h4>
+            <p style="margin-top: 0.25rem; font-size: 0.92rem;">Attached file: <strong>${f.filename}</strong></p>
+            <small style="color: var(--muted); display: block; margin-top: 0.5rem;">Broadcast on ${f.date}</small>
+          </div>
+        `;
+      });
+
+      posts.slice().reverse().forEach(p => {
+        feed.innerHTML += `
+          <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 0.85rem; background: var(--card);">
+            <span class="badge badge-staff">${p.type}</span>
+            <h4 style="margin-top: 0.5rem;">${p.title}</h4>
+            <p style="margin-top: 0.25rem; font-size: 0.92rem; white-space: pre-wrap;">${p.content}</p>
+            <small style="color: var(--muted); display: block; margin-top: 0.5rem;">Posted on ${p.date}</small>
+          </div>
+        `;
+      });
+
+      if (!adminFiles.length && !posts.length) {
+        feed.innerHTML = "<p style='color:var(--muted);'>No notices posted.</p>";
+      }
+    }
+
+    // Class Rep Subtabs
+    function switchRepSubTab(sub) {
+      ["roster", "manageclass", "timetables", "analytics"].forEach(s => {
+        document.getElementById(`rep-subtab-${s}`).classList.add("hidden");
+      });
+      document.getElementById(`rep-subtab-${sub}`).classList.remove("hidden");
+    }
+
+    function renderRepRoster() {
+      const users = getUsers();
+      const table = document.getElementById("rep-roster-table");
+      table.innerHTML = `<tr><th>Reg No (Username)</th><th>Full Name</th><th>Year</th></tr>`;
+      users.filter(u => u.role === 'student' || u.role === 'class_rep').forEach(u => {
+        table.innerHTML += `<tr><td><strong>${u.username}</strong></td><td>${u.firstName} ${u.lastName} ${u.surname || ''}</td><td>${u.year}</td></tr>`;
+      });
+      document.getElementById("rep-stat-total").textContent = users.filter(u => u.role === 'student' || u.role === 'class_rep').length;
+      document.getElementById("rep-stat-bans").textContent = users.filter(u => u.status === 'banned').length;
+    }
+
+    function downloadStudentList() {
+      const users = getUsers();
+      let csv = "Reg Number,Full Name,Year\n";
+      users.filter(u => u.role === 'student' || u.role === 'class_rep').forEach(u => {
+        csv += `"${u.username}","${u.firstName} ${u.lastName}","${u.year}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', 'student_roster.csv');
+      a.click();
+    }
+
+    document.getElementById("rep-att-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const unit = document.getElementById("rep-att-unit").value.trim();
+      const durationMin = parseInt(document.getElementById("rep-att-duration").value);
+      const expiresAt = Date.now() + (durationMin * 60 * 1000);
+      let att = JSON.parse(localStorage.getItem("IT_portal_attendance"));
+      att.push({ id: Date.now(), unit, expiresAt, attendees: [] });
+      localStorage.setItem("IT_portal_attendance", JSON.stringify(att));
+      document.getElementById("rep-att-form").reset();
+      alert("Attendance session started successfully!");
+    });
+
+    document.getElementById("rep-upload-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const title = document.getElementById("rep-up-title").value.trim();
+      const file = document.getElementById("rep-up-file").files[0];
+      if (!title || !file) { alert("Enter a title and choose a file."); return; }
+      readLocalFile(file, data => {
+        if (data === false) return;
+        const posts = JSON.parse(localStorage.getItem("IT_portal_rep_posts") || "[]");
+        posts.push({ id: Date.now(), type: "Subject Material", title: `Assignment/CAT: ${title}`, content: `Uploaded file: ${data.filename}`, filename: data.filename, fileType: data.fileType, fileData: data.fileData, uploadedBy: getSession()?.username || "class_rep", date: new Date().toLocaleString() });
+        localStorage.setItem("IT_portal_rep_posts", JSON.stringify(posts));
+        document.getElementById("rep-upload-form").reset(); alert("Subject assignment/CAT uploaded to noticeboard!");
+      });
+    });
+
+    document.getElementById("rep-timetable-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const type = document.getElementById("rep-tt-type").value;
+      const title = document.getElementById("rep-tt-title").value.trim();
+      const content = document.getElementById("rep-tt-content").value.trim();
+      const fileInput = document.getElementById("rep-tt-file");
+      const file = fileInput.files[0];
+
+      if (!title) { alert("Enter a timetable heading."); return; }
+      if (!content && !file) { alert("Enter a text schedule or attach a timetable file."); return; }
+
+      const saveTimetable = (fileData = "", filename = "", fileType = "") => {
+        let tts = JSON.parse(localStorage.getItem("IT_portal_timetables"));
+        tts.push({
+          type, title, content, filename, fileType, fileData,
+          publishedBy: getSession() ? getSession().username : "class_rep",
+          date: new Date().toLocaleString()
+        });
+        localStorage.setItem("IT_portal_timetables", JSON.stringify(tts));
+        document.getElementById("rep-timetable-form").reset();
+        alert(`${type} published successfully!`);
+        renderStudentTimetables();
+      };
+
+      if (file) {
+        if (file.size > 4 * 1024 * 1024) {
+          alert("Timetable file is too large. Please use a file of 4 MB or less in this browser prototype.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => saveTimetable(reader.result, file.name, file.type);
+        reader.onerror = () => alert("The timetable file could not be read.");
+        reader.readAsDataURL(file);
+      } else {
+        saveTimetable();
+      }
+    });
+
+    // Group management
+    function getUserDisplayName(username) {
+      const user = getUsers().find(u => u.username === username);
+      return user ? `${user.firstName || ""} ${user.middleName || ""} ${user.lastName || ""} ${user.surname || ""}`.replace(/\s+/g, " ").trim() || username : username;
+    }
+
+    function renderMyGroupView() {
+      const session = getSession();
+      const groupLeaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const groupMembers = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]");
+      const groupFiles = JSON.parse(localStorage.getItem("IT_portal_group_files") || "[]");
+      const container = document.getElementById("my-group-container");
+      if (!session || !container) return;
+      const leaderRecord = groupLeaders.find(g => g.username === session.username);
+      const membership = groupMembers.find(m => m.username === session.username);
+      const groupNum = leaderRecord ? leaderRecord.groupNum : membership?.groupNum;
+      if (!groupNum) { container.innerHTML = "<p style='color:var(--muted);'>You are not assigned to any group yet. Contact the Class Representative or Admin.</p>"; return; }
+      const leader = groupLeaders.find(g => Number(g.groupNum) === Number(groupNum));
+      const members = groupMembers.filter(m => Number(m.groupNum) === Number(groupNum));
+      const files = groupFiles.filter(f => Number(f.groupNum) === Number(groupNum));
+      let html = `<div class="card" style="background:var(--bg);"><h4>Group #${escapeHTML(groupNum)}</h4><p style="margin:.5rem 0;"><strong>Group Leader:</strong> ${escapeHTML(leader ? getUserDisplayName(leader.username) : "Not appointed")}</p><h5>Group Members (${members.length + (leader ? 1 : 0)} / 10):</h5><ul>`;
+      if (leader) html += `<li>${escapeHTML(getUserDisplayName(leader.username))} (${escapeHTML(leader.username)}) — Leader</li>`;
+      members.forEach(m => { html += `<li>${escapeHTML(getUserDisplayName(m.username))} (${escapeHTML(m.username)})</li>`; });
+      html += `</ul><h5 style="margin-top:1rem;">Group Files & Timetables</h5>`;
+      if (files.length) files.forEach((f, index) => { html += `<div style="background:var(--card);padding:.6rem;border:1px solid var(--border);border-radius:6px;margin-top:.5rem;"><strong>${escapeHTML(f.title)}</strong> — ${escapeHTML(f.filename || "Text entry")} <small>${escapeHTML(f.date || "")}</small>${f.fileData ? ` <a href="${f.fileData}" download="${escapeHTML(f.filename)}">Download</a>` : ""}</div>`; });
+      else html += `<p style="font-size:.85rem;color:var(--muted);">No files uploaded for this group yet.</p>`;
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function renderGroupLeaderPanel() {
+      const session = getSession();
+      const groupLeaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const myGl = groupLeaders.find(g => g.username === session?.username);
+      if (!myGl) return;
+      document.getElementById("gl-group-num").textContent = myGl.groupNum;
+      const members = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]").filter(m => Number(m.groupNum) === Number(myGl.groupNum));
+      document.getElementById("gl-member-count").textContent = members.length + 1;
+      const table = document.getElementById("gl-members-table");
+      table.innerHTML = `<tr><th>Member</th><th>Registration Number</th><th>Action</th></tr>`;
+      members.forEach(m => { table.innerHTML += `<tr><td>${escapeHTML(getUserDisplayName(m.username))}</td><td>${escapeHTML(m.username)}</td><td><button onclick="removeGroupMember(${Number(m.groupNum)}, '${String(m.username).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')" class="btn-danger" style="padding:.2rem .5rem;font-size:.75rem;">Remove</button></td></tr>`; });
+    }
+
+    function addGroupMember() {
+      const session = getSession();
+      const groupLeaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const myGl = groupLeaders.find(g => g.username === session?.username);
+      if (!myGl) { alert("You are not an appointed Group Leader."); return; }
+      const regInput = document.getElementById("gl-add-member-reg").value.trim();
+      const users = getUsers();
+      const target = users.find(u => u.username === regInput);
+      if (!target || target.role !== "student" || target.status !== "active") { alert("Enter the registration number of an active student."); return; }
+      let groupMembers = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]");
+      if (groupLeaders.some(g => g.username === regInput) || groupMembers.some(m => m.username === regInput)) { alert("This student is already assigned to a group."); return; }
+      const currentGroupMembers = groupMembers.filter(m => Number(m.groupNum) === Number(myGl.groupNum));
+      if (currentGroupMembers.length + 1 >= 10) { alert("Group is full. Maximum capacity is 10 people, including the Group Leader."); return; }
+      groupMembers.push({ groupNum: Number(myGl.groupNum), username: regInput, addedBy: session.username, addedAt: new Date().toISOString() });
+      localStorage.setItem("IT_portal_group_members", JSON.stringify(groupMembers));
+      document.getElementById("gl-add-member-reg").value = "";
+      renderGroupLeaderPanel(); renderMyGroupView();
+      alert("Member added successfully.");
+    }
+
+    function removeGroupMember(groupNum, username) {
+      const session = getSession();
+      const leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const myGl = leaders.find(g => g.username === session?.username);
+      if (!myGl || Number(myGl.groupNum) !== Number(groupNum)) { alert("You can only manage your assigned group."); return; }
+      let groupMembers = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]");
+      groupMembers = groupMembers.filter(m => !(Number(m.groupNum) === Number(groupNum) && m.username === username));
+      localStorage.setItem("IT_portal_group_members", JSON.stringify(groupMembers));
+      renderGroupLeaderPanel(); renderMyGroupView();
+    }
+
+    document.getElementById("gl-upload-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const session = getSession();
+      const leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const myGl = leaders.find(g => g.username === session?.username);
+      if (!myGl) { alert("You are not an appointed Group Leader."); return; }
+      const title = document.getElementById("gl-file-title").value.trim();
+      const file = document.getElementById("gl-file-input").files[0];
+      if (!title || !file) { alert("Enter a title and choose a file."); return; }
+      readLocalFile(file, data => {
+        if (data === false) return;
+        const files = JSON.parse(localStorage.getItem("IT_portal_group_files") || "[]");
+        files.push({ id: Date.now(), groupNum: Number(myGl.groupNum), title, filename: data.filename, fileType: data.fileType, fileData: data.fileData, uploadedBy: session.username, date: new Date().toLocaleString() });
+        localStorage.setItem("IT_portal_group_files", JSON.stringify(files));
+        document.getElementById("gl-upload-form").reset(); renderMyGroupView(); alert("File saved for your group members.");
+      });
+    });
+
+    document.getElementById("gl-timetable-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const session = getSession();
+      const leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const myGl = leaders.find(g => g.username === session?.username);
+      if (!myGl) { alert("You are not an appointed Group Leader."); return; }
+      const desc = document.getElementById("gl-tt-desc").value.trim();
+      if (!desc) { alert("Enter the group timetable or schedule."); return; }
+      const files = JSON.parse(localStorage.getItem("IT_portal_group_files") || "[]");
+      files.push({ id: Date.now(), groupNum: Number(myGl.groupNum), title: "Group Timetable & Schedule", filename: "Text schedule", content: desc, uploadedBy: session.username, date: new Date().toLocaleString() });
+      localStorage.setItem("IT_portal_group_files", JSON.stringify(files));
+      document.getElementById("gl-timetable-form").reset(); renderMyGroupView(); alert("Group timetable published.");
+    });
+
+    // Staff Tabs
+    function switchStaffTab(tab) {
+      ["assignments", "attendance", "reports"].forEach(t => {
+        document.getElementById(`staff-tab-${t}`).classList.add("hidden");
+        document.getElementById(`stnav-${t}`).classList.remove("active");
+      });
+      document.getElementById(`staff-tab-${tab}`).classList.remove("hidden");
+      document.getElementById(`stnav-${tab}`).classList.add("active");
+    }
+
+    document.getElementById("create-assignment-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const title = document.getElementById("ast-title").value.trim();
+      const deadline = document.getElementById("ast-deadline").value;
+      let assignments = JSON.parse(localStorage.getItem("IT_portal_assignments"));
+      assignments.push({ id: Date.now(), title, deadline, author: "staff" });
+      localStorage.setItem("IT_portal_assignments", JSON.stringify(assignments));
+      document.getElementById("create-assignment-form").reset();
+      renderStaffAssignments();
+      alert("Published!");
+    });
+
+    function renderStaffAssignments() {
+      const assignments = JSON.parse(localStorage.getItem("IT_portal_assignments"));
+      const table = document.getElementById("staff-assignments-table");
+      table.innerHTML = `<tr><th>Title</th><th>Deadline</th></tr>`;
+      assignments.forEach(a => { table.innerHTML += `<tr><td>${a.title}</td><td>${new Date(a.deadline).toLocaleString()}</td></tr>`; });
+    }
+
+    document.getElementById("create-att-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const unit = document.getElementById("att-unit").value.trim();
+      const durationMin = parseInt(document.getElementById("att-duration").value);
+      const expiresAt = Date.now() + (durationMin * 60 * 1000);
+      let att = JSON.parse(localStorage.getItem("IT_portal_attendance"));
+      att.push({ id: Date.now(), unit, expiresAt, attendees: [] });
+      localStorage.setItem("IT_portal_attendance", JSON.stringify(att));
+      document.getElementById("create-att-form").reset();
+      renderStaffAttendance();
+      alert("Started!");
+    });
+
+    function renderStaffAttendance() {
+      const att = JSON.parse(localStorage.getItem("IT_portal_attendance"));
+      const table = document.getElementById("staff-att-table");
+      table.innerHTML = `<tr><th>Unit</th><th>Signed</th></tr>`;
+      att.forEach(a => { table.innerHTML += `<tr><td>${a.unit}</td><td>${a.attendees.length} students</td></tr>`; });
+    }
+
+    function renderStaffReports() {
+      const reports = JSON.parse(localStorage.getItem("IT_portal_reports"));
+      const table = document.getElementById("staff-reports-table");
+      table.innerHTML = `<tr><th>Head</th><th>Message</th><th>File/Evidence</th><th>Sender</th><th>Date</th></tr>`;
+      reports.filter(r => r.recipient === "class_rep").forEach(r => {
+        const senderInfo = r.mode === "anonymous" ? "Anonymous Student" : `${r.senderName} (${r.sender})`;
+        table.innerHTML += `<tr><td>${r.head}</td><td>${r.message}</td><td>${r.file}</td><td>${senderInfo}</td><td>${r.date}</td></tr>`;
+      });
+    }
+
+    // Admin Tabs
+    function switchAdminTab(tab) {
+      ["analysis", "users", "students", "reps", "groupleaders", "staff", "pending", "provision", "uploads", "appeals", "passwordrequests", "reports", "warnings", "chats"].forEach(t => {
+        const el = document.getElementById(`admin-tab-${t}`);
+        if (el) el.classList.add("hidden");
+        const btn = document.getElementById(`adnav-${t}`);
+        if (btn) btn.classList.remove("active");
+      });
+      const target = document.getElementById(`admin-tab-${tab}`);
+      if (target) target.classList.remove("hidden");
+      const activeBtn = document.getElementById(`adnav-${tab}`);
+      if (activeBtn) activeBtn.classList.add("active");
+    }
+
+    function renderAdminStudents() {
+      const table = document.getElementById("admin-students-table");
+      if (!table) return;
+      const students = getUsers().filter(u => ["student", "class_rep"].includes(u.role));
+      table.innerHTML = `<tr><th>Registration Number</th><th>Full Name</th><th>Year</th><th>Status</th><th>Group</th></tr>`;
+      students.forEach(u => {
+        const leader = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]").find(g => g.username === u.username);
+        const member = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]").find(m => m.username === u.username);
+        const group = leader ? `Group ${leader.groupNum} (Leader)` : member ? `Group ${member.groupNum}` : "Not assigned";
+        table.innerHTML += `<tr><td>${escapeHTML(u.username)}</td><td>${escapeHTML(getUserDisplayName(u.username))}</td><td>${escapeHTML(u.year || "")}</td><td>${escapeHTML(u.status || "")}</td><td>${escapeHTML(group)}</td></tr>`;
+      });
+    }
+
+    function renderAdminReps() {
+      const table = document.getElementById("admin-reps-table");
+      if (!table) return;
+      const reps = getUsers().filter(u => u.role === "class_rep");
+      table.innerHTML = `<tr><th>Registration Number</th><th>Full Name</th><th>Status</th><th>Action</th></tr>`;
+      reps.forEach(u => { table.innerHTML += `<tr><td>${escapeHTML(u.username)}</td><td>${escapeHTML(getUserDisplayName(u.username))}</td><td>${escapeHTML(u.status)}</td><td><button class="btn-danger" onclick="revokeClassRep('${String(u.username).replace(/'/g,"\\'")}')" style="padding:.2rem .5rem;font-size:.75rem;">Revoke</button></td></tr>`; });
+    }
+
+    function renderAdminGroupLeaders() {
+      const table = document.getElementById("admin-gl-table");
+      if (!table) return;
+      const leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      table.innerHTML = `<tr><th>Group</th><th>Leader</th><th>Registration Number</th><th>Action</th></tr>`;
+      leaders.forEach(g => { table.innerHTML += `<tr><td>${escapeHTML(g.groupNum)}</td><td>${escapeHTML(getUserDisplayName(g.username))}</td><td>${escapeHTML(g.username)}</td><td><button class="btn-danger" onclick="removeGroupLeader(${Number(g.groupNum)})" style="padding:.2rem .5rem;font-size:.75rem;">Remove Leader</button></td></tr>`; });
+    }
+
+    document.getElementById("appoint-rep-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const reg = document.getElementById("appoint-reg").value.trim();
+      let users = getUsers();
+      const target = users.find(u => u.username === reg);
+      if (!target || !["student", "class_rep"].includes(target.role) || target.status !== "active") { alert("Enter an active student registration number."); return; }
+      users = users.map(u => u.username === reg ? { ...u, role: "class_rep" } : u);
+      saveUsers(users); document.getElementById("appoint-rep-form").reset();
+      renderAdminReps(); renderAdminStudents(); renderAdminUsers(); alert("Class Representative appointed.");
+    });
+
+    function revokeClassRep(username) {
+      const users = getUsers().map(u => u.username === username && u.role === "class_rep" ? { ...u, role: "student" } : u);
+      saveUsers(users); renderAdminReps(); renderAdminStudents(); renderAdminUsers();
+    }
+
+    document.getElementById("appoint-gl-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const groupNum = Number(document.getElementById("gl-num-input").value);
+      const reg = document.getElementById("gl-reg-input").value.trim();
+      const users = getUsers();
+      const target = users.find(u => u.username === reg);
+      if (!Number.isInteger(groupNum) || groupNum < 1 || groupNum > 30) { alert("Group number must be from 1 to 30."); return; }
+      if (!target || !["student", "class_rep"].includes(target.role) || target.status !== "active") { alert("Enter an active student registration number."); return; }
+      let leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      if (leaders.some(g => Number(g.groupNum) === groupNum)) { alert("This group already has a Group Leader. Remove the current leader before appointing a replacement."); return; }
+      if (leaders.some(g => g.username === reg) || JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]").some(m => m.username === reg)) { alert("This student already belongs to a group."); return; }
+      leaders.push({ groupNum, username: reg, appointedBy: getSession()?.username || "admin", appointedAt: new Date().toISOString() });
+      localStorage.setItem("IT_portal_group_leaders", JSON.stringify(leaders));
+      document.getElementById("appoint-gl-form").reset(); renderAdminGroupLeaders(); renderAdminStudents(); alert("Group Leader appointed.");
+    });
+
+    function removeGroupLeader(groupNum) {
+      let leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      leaders = leaders.filter(g => Number(g.groupNum) !== Number(groupNum));
+      localStorage.setItem("IT_portal_group_leaders", JSON.stringify(leaders));
+      renderAdminGroupLeaders(); renderAdminStudents();
+      alert("Group Leader removed. Appoint a replacement to restore group leadership.");
+    }
+
+    function renderAdminStaff() {
+      const table = document.getElementById("admin-staff-table");
+      if (!table) return;
+      const staff = getUsers().filter(u => ["lecturer", "cod", "dean", "vc"].includes(u.role));
+      table.innerHTML = `<tr><th>Username</th><th>Full Name</th><th>Role</th><th>Status</th></tr>`;
+      staff.forEach(u => { table.innerHTML += `<tr><td>${escapeHTML(u.username)}</td><td>${escapeHTML(getUserDisplayName(u.username))}</td><td>${escapeHTML(u.role.toUpperCase())}</td><td>${escapeHTML(u.status)}</td></tr>`; });
+    }
+
+    function recordSuccessfulLogin(username) {
+      const logs = JSON.parse(localStorage.getItem("IT_portal_login_history") || "[]");
+      logs.push({ username, timestamp: Date.now() });
+      localStorage.setItem("IT_portal_login_history", JSON.stringify(logs.slice(-5000)));
+    }
+
+    function svgBars(items, colorSet) {
+      if (!items.length || items.every(x => !x.value)) return '<div class="analytics-empty">No recorded data available yet.</div>';
+      const max = Math.max(1, ...items.map(x => x.value));
+      const width = Math.max(320, items.length * 58 + 40), height = 180, base = 142, plot = 112;
+      const bars = items.map((item,i) => { const h = item.value ? Math.max(3, item.value / max * plot) : 0; const x = 28 + i * ((width - 56) / items.length); const bw = Math.min(32, (width - 70) / items.length * .58); const color = colorSet[i % colorSet.length]; return `<rect x="${x}" y="${base-h}" width="${bw}" height="${h}" rx="4" fill="${color}"/><text x="${x+bw/2}" y="${base+17}" text-anchor="middle" font-size="10" fill="currentColor">${escapeHTML(item.label)}</text><text x="${x+bw/2}" y="${base-h-6}" text-anchor="middle" font-size="10" fill="currentColor">${item.value}</text>`; }).join('');
+      return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Bar chart"><line x1="18" y1="${base}" x2="${width-12}" y2="${base}" stroke="var(--border)"/>${bars}</svg>`;
+    }
+
+    function svgDonut(items, colors) {
+      const total = items.reduce((n,x) => n+x.value,0);
+      if (!total) return '<div class="analytics-empty">No recorded data available yet.</div>';
+      let offset = 0; const circumference = 2 * Math.PI * 52;
+      const circles = items.map((item,i) => { const length = item.value / total * circumference; const circle = `<circle cx="85" cy="82" r="52" fill="none" stroke="${colors[i%colors.length]}" stroke-width="19" stroke-dasharray="${length} ${circumference-length}" stroke-dashoffset="${-offset}" transform="rotate(-90 85 82)"/>`; offset += length; return circle; }).join('');
+      const legend = items.map((item,i) => `<span><i class="analytics-dot" style="background:${colors[i%colors.length]}"></i>${escapeHTML(item.label)}: <strong>${item.value}</strong></span>`).join('');
+      return `<div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap"><svg viewBox="0 0 170 165" style="max-width:190px"><circle cx="85" cy="82" r="52" fill="none" stroke="var(--border)" stroke-width="19"/>${circles}<text x="85" y="79" text-anchor="middle" font-size="19" font-weight="700" fill="currentColor">${total}</text><text x="85" y="96" text-anchor="middle" font-size="9" fill="currentColor">TOTAL</text></svg><div class="analytics-legend" style="display:grid">${legend}</div></div>`;
+    }
+
+    function renderAdminAnalytics() {
+      const users = getUsers();
+      const students = users.filter(u => ["student", "class_rep"].includes(u.role));
+      const active = users.filter(u => u.status === "active").length;
+      const pending = users.filter(u => u.status === "pending").length;
+      const banned = users.filter(u => u.status === "banned").length;
+      const set = (id,value) => { const el=document.getElementById(id); if(el) el.textContent=value; };
+      set("stat-total-users",users.length); set("stat-active-users",active); set("stat-pending-users",pending); set("stat-total-students",students.length); set("stat-bans",banned);
+      const palette=["#2563eb","#16a34a","#d97706","#dc2626","#7c3aed","#0891b2","#db2777"];
+      const roles=["student","class_rep","lecturer","cod","dean","vc","admin"].map(r=>({label:r.replace("_"," "),value:users.filter(u=>u.role===r).length}));
+      const statuses=["active","pending","banned","removed"].map(r=>({label:r,value:users.filter(u=>u.status===r).length}));
+      document.getElementById("analytics-roles").innerHTML=svgDonut(roles,palette);
+      document.getElementById("analytics-status").innerHTML=svgDonut(statuses,["#16a34a","#d97706","#dc2626","#64748b"]);
+      const monthNames=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const monthCounts=monthNames.map((m,i)=>({label:m,value:users.filter(u=>{const d=Number(u.createdAt||u.registeredAt||0);const date=d?new Date(d):new Date(u.createdAt||0);return d && date.getFullYear()===new Date().getFullYear() && date.getMonth()===i;}).length}));
+      document.getElementById("analytics-registrations").innerHTML=svgBars(monthCounts,palette);
+      const loginLogs=JSON.parse(localStorage.getItem("IT_portal_login_history")||"[]");
+      const loginDays=Array.from({length:7},(_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(6-i));return {date:d,label:d.toLocaleDateString(undefined,{weekday:"short"})};});
+      const logCounts=loginDays.map(day=>({label:day.label,value:loginLogs.filter(l=>{const t=Number(l.timestamp||0);const d=new Date(t);return t>=day.date.getTime()&&t<day.date.getTime()+86400000;}).length}));
+      document.getElementById("analytics-logins").innerHTML=svgBars(logCounts,palette);
+      const members=JSON.parse(localStorage.getItem("IT_portal_group_members")||"[]"), leaders=JSON.parse(localStorage.getItem("IT_portal_group_leaders")||"[]");
+      const groupCounts=Array.from({length:30},(_,i)=>({label:String(i+1),value:members.filter(m=>Number(m.groupNum)===i+1).length+leaders.filter(l=>Number(l.groupNum)===i+1).length})).filter(x=>x.value>0);
+      document.getElementById("analytics-groups").innerHTML=svgBars(groupCounts,palette);
+      const actions=JSON.parse(localStorage.getItem("IT_portal_admin_audit")||"[]");
+      const actionTypes=["BAN","UNBAN","WARN","REMOVE"].map(type=>({label:type,value:actions.filter(a=>(a.action||"").toUpperCase().includes(type)).length}));
+      document.getElementById("analytics-actions").innerHTML=svgBars(actionTypes,palette);
+    }
+
+    function downloadAnalyticsCSV() {
+      const users=getUsers(); const rows=[["Username","Name","Role","Status","Academic year"],...users.map(u=>[u.username,getUserDisplayName(u.username),u.role,u.status,u.year||""])];
+      const csv=rows.map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");
+      const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="portal-analytics-users.csv";a.click();URL.revokeObjectURL(url);
+    }
+
+    function renderAdminUsers() {
+      const users = getUsers();
+      const query = (document.getElementById("admin-search")?.value || "").toLowerCase();
+      const table = document.getElementById("admin-users-table");
+      table.innerHTML = `<tr><th>Username</th><th>Name</th><th>Role</th><th>Status</th><th>Password</th><th>Actions</th></tr>`;
+      users.filter(u => u.username.toLowerCase().includes(query) || ((u.firstName || "") + " " + (u.lastName || "")).toLowerCase().includes(query) || (u.role || "").toLowerCase().includes(query)).slice(0, 60).forEach(u => {
+        const statusText = u.status === "banned" && u.banUntil ? `${u.status} until ${new Date(u.banUntil).toLocaleString()}` : u.status === "removed" && u.removeUntil ? `${u.status} until ${new Date(u.removeUntil).toLocaleString()}` : u.status;
+        table.innerHTML += `<tr><td><strong>${escapeHTML(u.username)}</strong></td><td>${escapeHTML(getUserDisplayName(u.username))}</td><td><span class="badge badge-${u.role === 'admin' ? 'admin' : 'staff'}">${escapeHTML((u.role || '').toUpperCase())}</span></td><td><span class="badge ${u.status === 'banned' ? 'badge-banned' : 'badge-student'}">${escapeHTML(statusText)}</span></td><td><em>Open View for password</em></td><td style="display:flex;gap:.35rem;flex-wrap:wrap;"><button onclick="viewUserAdmin('${String(u.username).replace(/'/g,"\\'")}')" class="btn-outline" style="padding:.2rem .4rem;font-size:.75rem;">View</button><button onclick="resetPasswordDefault('${String(u.username).replace(/'/g,"\\'")}')" class="btn-outline" style="padding:.2rem .4rem;font-size:.75rem;">Reset Password</button><button onclick="editUserAdmin('${String(u.username).replace(/'/g,"\\'")}')" class="btn-outline" style="padding:.2rem .4rem;font-size:.75rem;">Edit</button>${u.username !== 'admin' ? `<button onclick="openAdminActionModal('remove','${String(u.username).replace(/'/g,"\\'")}')" class="btn-danger" style="padding:.2rem .4rem;font-size:.75rem;">Remove</button>` : ''}${u.username !== 'admin' && u.status !== 'banned' ? `<button onclick="openAdminActionModal('ban','${String(u.username).replace(/'/g,"\\'")}')" class="btn-danger" style="padding:.2rem .4rem;font-size:.75rem;">Ban</button>` : ''}${u.username !== 'admin' ? `<button onclick="openAdminActionModal('warn','${String(u.username).replace(/'/g,"\\'")}')" class="btn-outline" style="padding:.2rem .4rem;font-size:.75rem;">Warn</button>` : ''}${u.status === 'banned' ? `<button onclick="unbanUser('${String(u.username).replace(/'/g,"\\'")}')" class="btn-success" style="padding:.2rem .4rem;font-size:.75rem;">Unban</button>` : ''}</td></tr>`;
+      });
+    }
+
+    function viewUserAdmin(username) {
+      const user = getUsers().find(u => u.username === username);
+      if (!user) return;
+      const leaders = JSON.parse(localStorage.getItem("IT_portal_group_leaders") || "[]");
+      const members = JSON.parse(localStorage.getItem("IT_portal_group_members") || "[]");
+      const leader = leaders.find(g => g.username === username);
+      const member = members.find(m => m.username === username);
+      const history = JSON.parse(localStorage.getItem("IT_portal_admin_audit") || "[]").filter(a => a.targetUser === username);
+      const fields = [
+        ["Full name", getUserDisplayName(username)], ["Username / Registration number", user.username], ["Role", user.role], ["Account status", user.status],
+        ["Academic year", user.year || "Not set"], ["Phone", user.phone || "Not provided"], ["Email", user.email || "Not provided"],
+        ["Other contact", user.otherContact || "Not provided"], ["Group", leader ? leader.groupNum + " (Leader)" : member ? member.groupNum : "Not assigned"],
+        ["Admin actions recorded", history.length]
+      ];
+      const content = document.getElementById("admin-user-detail-content");
+      content.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">${fields.map(([k,v]) => `<div style="padding:.75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;"><small style="color:var(--muted);">${escapeHTML(k)}</small><div style="font-weight:600;overflow-wrap:anywhere;">${escapeHTML(String(v))}</div></div>`).join("")}</div>
+        <div style="margin-top:1rem;padding:.85rem;border:1px solid var(--border);border-radius:8px;"><strong>Password (browser demo only)</strong><div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;"><input id="admin-revealed-password" type="password" value="${escapeHTML(user.password || "")}" readonly style="flex:1;min-width:0;"><button type="button" class="btn-outline" onclick="toggleAdminPasswordVisibility()">Show / Hide</button></div><small style="color:var(--muted);display:block;margin-top:.4rem;">This prototype stores passwords in browser storage. A real secure portal should never let an administrator view a user's password.</small></div>
+        <h4 style="margin-top:1rem;">Admin activity history</h4><div>${history.length ? history.map(h => `<p style="padding:.5rem;border-bottom:1px solid var(--border);">${escapeHTML(h.action || "Action")} — ${escapeHTML(h.details || "")} <small>${escapeHTML(h.date || "")}</small></p>`).join("") : "No admin actions recorded."}</div>`;
+      if (["student", "class_rep"].includes(user.role) && user.status === "active") {
+        content.insertAdjacentHTML("afterbegin", `<button type="button" class="btn-primary" style="width:auto;margin:0 0 1rem;" onclick="viewAsUserPortal('${String(username).replace(/'/g,"\\'")}')">Open portal as this student</button>`);
+      }
+      document.getElementById("admin-user-detail-backdrop").classList.remove("hidden");      document.getElementById("admin-user-detail-backdrop").classList.remove("hidden");
+      document.getElementById("admin-user-detail-modal").classList.remove("hidden");
+    }
+
+    function viewAsUserPortal(username) {
+      const admin=getSession();
+      if (!admin || admin.role!=="admin") { alert("Only Admin can use this feature."); return; }
+      const target=getUsers().find(u=>u.username===username && ["student","class_rep"].includes(u.role) && u.status==="active");
+      if (!target) { alert("This active student account could not be opened."); return; }
+      sessionStorage.setItem("IT_admin_return_session",JSON.stringify(admin));
+      sessionStorage.setItem("IT_view_as_user","true");
+      closeUserDetail(); setSession(target); checkActiveSession();
+      const exit=document.getElementById("exit-view-as"); if(exit) exit.classList.remove("hidden");
+      const topbar=document.querySelector("#view-student .topbar");
+      if(topbar && !document.getElementById("view-as-banner")) topbar.insertAdjacentHTML("afterend",`<div id="view-as-banner" class="view-as-banner"><span><strong>Admin preview:</strong> You are viewing this student portal. Actions may change this account's data.</span><button type="button" class="btn-outline" onclick="exitViewAsUser()">Return to Admin</button></div>`);
+    }
+
+    function exitViewAsUser() {
+      const adminRaw=sessionStorage.getItem("IT_admin_return_session");
+      if(!adminRaw) return;
+      const admin=JSON.parse(adminRaw); sessionStorage.removeItem("IT_admin_return_session");sessionStorage.removeItem("IT_view_as_user");
+      const banner=document.getElementById("view-as-banner");if(banner)banner.remove();
+      const exit=document.getElementById("exit-view-as");if(exit)exit.classList.add("hidden");
+      setSession(admin);checkActiveSession();
+    }
+
+    function toggleAdminPasswordVisibility() {
+      const input = document.getElementById("admin-revealed-password");
+      if (input) input.type = input.type === "password" ? "text" : "password";
+    }
+
+    function closeUserDetail() {
+      document.getElementById("admin-user-detail-modal").classList.add("hidden");
+      document.getElementById("admin-user-detail-backdrop").classList.add("hidden");
+    }
+
+    function resetPasswordDefault(username) {
+      const newPassword = prompt(`Enter a new temporary password for ${username}. The existing password will not be shown:`);
+      if (newPassword === null) return;
+      if (newPassword.length < 8) { alert("Use at least 8 characters for the temporary password."); return; }
+      const users = getUsers().map(u => u.username === username ? { ...u, password: newPassword, mustChangePassword: true } : u);
+      saveUsers(users); adminAudit("PASSWORD_RESET", username, "Admin set a temporary password", "immediate", null);
+      alert("Temporary password updated. Share it with the account owner privately.");
+    }
+
+    function editUserAdmin(username) {
+      let users = getUsers();
+      const target = users.find(u => u.username === username);
+      if (!target) return;
+      const first = prompt("First name:", target.firstName || ""); if (first === null) return;
+      const middle = prompt("Middle name:", target.middleName || ""); if (middle === null) return;
+      const last = prompt("Last name:", target.lastName || ""); if (last === null) return;
+      const surname = prompt("Surname (optional):", target.surname || ""); if (surname === null) return;
+      const phone = prompt("Phone number:", target.phone || ""); if (phone === null) return;
+      const year = prompt("Academic year:", target.year || ""); if (year === null) return;
+      const role = prompt("Role (student, class_rep, lecturer, cod, dean, vc, admin):", target.role || "student"); if (role === null) return;
+      const allowed = ["student", "class_rep", "lecturer", "cod", "dean", "vc", "admin"];
+      if (!allowed.includes(role.trim().toLowerCase())) { alert("Invalid role."); return; }
+      users = users.map(u => u.username === username ? { ...u, firstName: first.trim(), middleName: middle.trim(), lastName: last.trim(), surname: surname.trim(), phone: phone.trim(), year: year.trim(), role: role.trim().toLowerCase() } : u);
+      saveUsers(users); adminAudit("EDIT_USER", username, "Updated profile fields", "immediate", null);
+      renderAdminUsers(); renderAdminStudents(); renderAdminReps(); renderAdminStaff();
+    }
+
+    function parseAdminDuration(value) {
+      if (value === "permanent") return null;
+      const unit = value.slice(-1);
+      const amount = parseInt(value.slice(0, -1), 10);
+      if (unit === "h") return amount * 60 * 60 * 1000;
+      if (unit === "d") return amount * 24 * 60 * 60 * 1000;
+      return null;
+    }
+
+    function adminAudit(action, username, reason, duration, evidence) {
+      const logs = JSON.parse(localStorage.getItem("IT_portal_admin_audit") || "[]");
+      const session = getSession();
+      logs.push({ action, targetUser: username, reason, duration, evidence: evidence ? evidence.filename : "", evidenceData: evidence ? evidence.data : "", performedBy: session ? session.username : "admin", date: new Date().toLocaleString() });
+      localStorage.setItem("IT_portal_admin_audit", JSON.stringify(logs));
+    }
+
+    function openAdminActionModal(type, username) {
+      const users = getUsers();
+      const target = users.find(u => u.username === username);
+      if (!target || username === "admin") return;
+      document.getElementById("admin-action-modal").classList.remove("hidden");
+      document.getElementById("admin-action-username").value = username;
+      document.getElementById("admin-action-type").value = type;
+      document.getElementById("admin-action-title").textContent = type === "remove" ? "Remove User" : type === "ban" ? "Ban User" : "Issue Warning";
+      document.getElementById("admin-action-target").textContent = `Target: ${target.username} — ${target.firstName || ""} ${target.lastName || ""}`;
+      document.getElementById("admin-action-reason").value = "";
+      document.getElementById("admin-action-evidence").value = "";
+      document.getElementById("admin-action-duration-group").classList.toggle("hidden", type === "warn");
+      document.getElementById("admin-action-warning-level-group").classList.toggle("hidden", type !== "warn");
+      document.getElementById("admin-action-submit").textContent = type === "remove" ? "Confirm Remove" : type === "ban" ? "Confirm Ban" : "Issue Warning";
+      document.getElementById("admin-action-modal").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function closeAdminActionModal() {
+      document.getElementById("admin-action-modal").classList.add("hidden");
+      document.getElementById("admin-action-form").reset();
+    }
+
+    function readAdminEvidence(file, callback) {
+      if (!file) { callback(null); return; }
+      if (file.size > 2 * 1024 * 1024) {
+        alert("Evidence file is too large. Please use a file of 2 MB or less in this browser prototype.");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => callback({ filename: file.name, type: file.type, size: file.size, data: reader.result });
+      reader.onerror = () => alert("The evidence file could not be read.");
+      reader.readAsDataURL(file);
+    }
+
+    document.getElementById("admin-action-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("admin-action-username").value;
+      const type = document.getElementById("admin-action-type").value;
+      const reason = document.getElementById("admin-action-reason").value.trim();
+      const duration = document.getElementById("admin-action-duration").value;
+      const warningLevel = document.getElementById("admin-action-warning-level").value;
+      const file = document.getElementById("admin-action-evidence").files[0];
+      if (!reason) { alert("A reason is required."); return; }
+
+      readAdminEvidence(file, evidence => {
+        if (file && !evidence) return;
+        let users = getUsers();
+        const target = users.find(u => u.username === username);
+        if (!target || username === "admin") return;
+
+        if (type === "remove" && duration === "permanent") {
+          if (!confirm(`Permanently delete ${username}? This cannot be undone from this browser prototype.`)) return;
+          users = users.filter(u => u.username !== username);
+          saveUsers(users);
+          adminAudit("REMOVE_PERMANENT", username, reason, "permanent", evidence);
+        } else if (type === "remove") {
+          const ms = parseAdminDuration(duration);
+          const until = Date.now() + ms;
+          users = users.map(u => u.username === username ? { ...u, status: "removed", removeReason: reason, removeUntil: until, removeEvidence: evidence ? evidence.filename : "" } : u);
+          saveUsers(users);
+          adminAudit("REMOVE_TEMPORARY", username, reason, duration, evidence);
+        } else if (type === "ban") {
+          const ms = parseAdminDuration(duration);
+          const until = ms === null ? null : Date.now() + ms;
+          users = users.map(u => u.username === username ? { ...u, status: "banned", banReason: reason, banUntil: until, banEvidence: evidence ? evidence.filename : "" } : u);
+          saveUsers(users);
+          adminAudit("BAN", username, reason, duration, evidence);
+        } else if (type === "warn") {
+          let warnings = JSON.parse(localStorage.getItem("IT_portal_warnings") || "[]");
+          warnings.push({ username, msg: reason, level: warningLevel, evidence: evidence ? evidence.filename : "", evidenceData: evidence ? evidence.data : "", date: new Date().toLocaleString(), issuedBy: getSession() ? getSession().username : "admin" });
+          localStorage.setItem("IT_portal_warnings", JSON.stringify(warnings));
+          adminAudit("WARN", username, reason, warningLevel, evidence);
+        }
+
+        closeAdminActionModal();
+        renderAdminUsers();
+        renderAdminWarnings();
+        renderAdminAnalytics();
+        alert(type === "remove" ? "Remove action applied successfully." : type === "ban" ? "Ban action applied successfully." : "Warning issued successfully.");
+      });
+    });
+
+    function removeUserSystem(username) {
+      openAdminActionModal("remove", username);
+    }
+
+    function banUser(username) {
+      openAdminActionModal("ban", username);
+    }
+
+    function unbanUser(username) {
+      let users = getUsers();
+      users = users.map(u => u.username === username ? { ...u, status: "active", banReason: null, banUntil: null, banEvidence: "" } : u);
+      saveUsers(users);
+      adminAudit("UNBAN", username, "Administrative unban", "immediate", null);
+      renderAdminUsers();
+      renderAdminAnalytics();
+    }
+
+    function renderAdminPending() {
+      const users = getUsers();
+      const table = document.getElementById("admin-pending-table");
+      table.innerHTML = `<tr><th>Username</th><th>Name</th><th>Year</th><th>Action</th></tr>`;
+      users.filter(u => u.status === "pending").forEach(u => {
+        table.innerHTML += `
+          <tr>
+            <td>${u.username}</td>
+            <td>${u.firstName} ${u.lastName}</td>
+            <td>${u.year}</td>
+            <td>
+              <button onclick="approveStudent('${u.username}')" class="btn-success" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">Approve</button>
+              <button onclick="rejectStudent('${u.username}')" class="btn-danger" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">Reject</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function approveStudent(username) {
+      let users = getUsers();
+      users = users.map(u => u.username === username ? { ...u, status: "active" } : u);
+      saveUsers(users);
+      renderAdminPending();
+      renderAdminUsers();
+    }
+
+    function rejectStudent(username) {
+      let users = getUsers();
+      users = users.filter(u => u.username !== username);
+      saveUsers(users);
+      renderAdminPending();
+      renderAdminUsers();
+    }
+
+    document.getElementById("manual-staff-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const u = document.getElementById("manual-username").value.trim();
+      const fullname = document.getElementById("manual-fullname").value.trim();
+      const p = document.getElementById("manual-password").value;
+      const role = document.getElementById("manual-role").value;
+
+      let users = getUsers();
+      if (users.some(x => x.username === u)) { alert("Username exists!"); return; }
+      users.push({ username: u, password: p, role: role, status: "active", createdAt: Date.now(), year: "Staff", firstName: fullname, lastName: "", surname: "", avatar: "", chatAlias: "" });
+      saveUsers(users);
+      alert("Account created!");
+      document.getElementById("manual-staff-form").reset();
+      renderAdminUsers();
+    });
+
+    document.getElementById("admin-upload-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const title = document.getElementById("admin-up-title").value.trim();
+      const fileInput = document.getElementById("admin-up-file");
+      const filename = fileInput.files[0] ? fileInput.files[0].name : "file";
+
+      let adminFiles = JSON.parse(localStorage.getItem("IT_portal_admin_files") || "[]");
+      adminFiles.push({ title, filename, date: new Date().toLocaleString() });
+      localStorage.setItem("IT_portal_admin_files", JSON.stringify(adminFiles));
+      document.getElementById("admin-upload-form").reset();
+      alert("File uploaded and broadcasted to students successfully!");
+    });
+
+    function renderAdminAppeals() {
+      const appeals = JSON.parse(localStorage.getItem("IT_portal_appeals"));
+      const table = document.getElementById("admin-appeals-table");
+      table.innerHTML = `<tr><th>Username</th><th>Heading</th><th>Reason</th><th>Action</th></tr>`;
+      appeals.forEach((a, idx) => {
+        table.innerHTML += `<tr><td>${escapeHTML(a.username)}</td><td>${escapeHTML(a.head)}</td><td>${escapeHTML(a.explanation)}</td><td>${escapeHTML(a.status || "pending")} ${a.status === "pending" || !a.status ? `<button onclick="reviewAppeal(${idx},true)" class="btn-success" style="padding:.2rem .5rem;font-size:.8rem;">Approve</button> <button onclick="reviewAppeal(${idx},false)" class="btn-danger" style="padding:.2rem .5rem;font-size:.8rem;">Reject</button>` : ""}</td></tr>`;
+      });
+    }
+
+    function reviewAppeal(idx, approved) {
+      let appeals = JSON.parse(localStorage.getItem("IT_portal_appeals") || "[]");
+      const appeal = appeals[idx]; if (!appeal) return;
+      appeal.status = approved ? "approved" : "rejected";
+      appeal.reviewedAt = new Date().toLocaleString();
+      appeal.reviewedBy = getSession()?.username || "admin";
+      if (approved) {
+        const users = getUsers().map(u => u.username === appeal.username ? { ...u, status: "active", banReason: null, banUntil: null, banEvidence: "" } : u);
+        saveUsers(users); adminAudit("APPEAL_APPROVED", appeal.username, appeal.explanation, "immediate", null);
+      } else adminAudit("APPEAL_REJECTED", appeal.username, appeal.explanation, "immediate", null);
+      localStorage.setItem("IT_portal_appeals", JSON.stringify(appeals));
+      renderAdminAppeals(); renderAdminUsers(); renderAdminAnalytics();
+    }
+
+    function renderAdminReports() {
+      const reports = JSON.parse(localStorage.getItem("IT_portal_reports"));
+      const table = document.getElementById("admin-reports-table");
+      table.innerHTML = `<tr><th>Recipient</th><th>Mode</th><th>True Sender</th><th>Head</th><th>Message</th><th>Evidence File</th></tr>`;
+      reports.forEach(r => {
+        table.innerHTML += `<tr><td>${r.recipient.toUpperCase()}</td><td>${r.mode}</td><td>${r.senderName} (${r.sender})</td><td>${r.head}</td><td>${r.message}</td><td>${r.file}</td></tr>`;
+      });
+    }
+
+    document.getElementById("warning-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("warn-username").value.trim();
+      const msg = document.getElementById("warn-msg").value.trim();
+      const level = document.getElementById("warn-level").value;
+      const file = document.getElementById("warn-file").files[0];
+      if (!msg) return;
+      const users = getUsers();
+      if (!users.some(u => u.username === username)) { alert("Student/user not found."); return; }
+
+      readAdminEvidence(file, evidence => {
+        if (file && !evidence) return;
+        let warnings = JSON.parse(localStorage.getItem("IT_portal_warnings") || "[]");
+        warnings.push({ username, msg, level, evidence: evidence ? evidence.filename : "", evidenceData: evidence ? evidence.data : "", date: new Date().toLocaleString(), issuedBy: getSession() ? getSession().username : "admin" });
+        localStorage.setItem("IT_portal_warnings", JSON.stringify(warnings));
+        adminAudit("WARN", username, msg, level, evidence);
+        document.getElementById("warning-form").reset();
+        renderAdminWarnings();
+        alert("Warning issued!");
+      });
+    });
+
+    function renderAdminWarnings() {
+      const warnings = JSON.parse(localStorage.getItem("IT_portal_warnings") || "[]");
+      const table = document.getElementById("admin-warnings-table");
+      table.innerHTML = `<tr><th>Target User</th><th>Level</th><th>Warning Reason</th><th>Evidence</th><th>Date</th></tr>`;
+      warnings.forEach(w => {
+        const evidence = w.evidence ? (w.evidenceData ? `<a href="${w.evidenceData}" download="${w.evidence}">${w.evidence}</a>` : w.evidence) : "None";
+        table.innerHTML += `<tr><td>${w.username}</td><td>${w.level || "Warning"}</td><td>${w.msg}</td><td>${evidence}</td><td>${w.date}</td></tr>`;
+      });
+    }
+
+    function renderAdminChats() {
+      const chats = JSON.parse(localStorage.getItem("IT_portal_chats"));
+      const table = document.getElementById("admin-chats-table");
+      table.innerHTML = `<tr><th>Alias</th><th>Message</th><th>Time</th><th>Action</th></tr>`;
+      chats.forEach((c, idx) => {
+        table.innerHTML += `<tr><td>@${c.alias}</td><td>${c.text}</td><td>${c.time}</td><td><button onclick="deleteChatMessage(${idx})" class="btn-danger" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">Delete</button></td></tr>`;
+      });
+    }
+
+    function deleteChatMessage(idx) {
+      let chats = JSON.parse(localStorage.getItem("IT_portal_chats"));
+      chats.splice(idx, 1);
+      localStorage.setItem("IT_portal_chats", JSON.stringify(chats));
+      renderAdminChats();
+    }
+
+    function toggleAiChat() { document.getElementById("ai-chat-window").classList.toggle("hidden"); }
+    document.getElementById("ai-chat-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const input = document.getElementById("ai-input");
+      const q = input.value.trim();
+      const body = document.getElementById("ai-chat-body");
+      body.innerHTML += `<div class="ai-msg user">${q}</div>`;
+      input.value = "";
+      setTimeout(() => {
+        body.innerHTML += `<div class="ai-msg bot">I can assist with logging in, reports, attendance, and navigation across Kisii University portals.</div>`;
+        body.scrollTop = body.scrollHeight;
+      }, 250);
+    });
+
+    checkActiveSession();
+  </script>
+</body>
+</html>
