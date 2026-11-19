@@ -157,15 +157,15 @@
       <div id="forgot-message" class="alert hidden"></div>
       <form id="forgot-request-form">
         <div class="form-group"><label>Registration Number*</label><input id="forgot-username" required></div>
-        <div class="form-group"><label>Your registered email address (if available)</label><input type="email" id="forgot-email"></div>
-        <button class="btn-primary" type="submit">Send Reset Request</button>
+        <div class="form-group"><label>email</label><input type="email" id="forgot-email"></div>
+        <button class="btn-primary" type="submit">Send Request</button>
       </form>
       <form id="forgot-verify-form" class="hidden" style="margin-top:1rem;">
         <div class="form-group"><label>Verification Code*</label><input id="forgot-code" inputmode="numeric" maxlength="6" required></div>
         <button class="btn-primary" type="submit">Verify Code & Reset Password</button>
       </form>
       <p style="margin-top:1rem;text-align:center;font-size:.88rem;"><a href="#" onclick="switchView('login');return false;">Back to login</a></p>
-      <p style="font-size:.78rem;color:var(--muted);">This one-file demo stores requests in this browser. It cannot send email automatically; the administrator must send the code using the email link provided in the Admin panel.</p>
+      <p style="font-size:.78rem;color:var(--muted);"></p>
     </div>
   </div>
 
@@ -229,7 +229,7 @@
           <input type="text" id="prompt-lastname" required>
         </div>
         <div class="form-group">
-          <label>Surname (optional)</label>
+          <label>Surname</label>
           <input type="text" id="prompt-surname">
         </div>
         <div class="form-group"><label>Phone Number*</label><input type="tel" id="prompt-phone" required ></div>
@@ -408,12 +408,12 @@
 
         <div id="student-tab-report" class="card hidden">
           <h3>Submit Report</h3>
-          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Select recipient, choose named or anonymous delivery, enter head message, message, attach local evidence file, and send.</p>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Select recipient/p>
           <form id="report-form" style="max-width: 600px;">
             <div class="form-group">
               <label>Report Recipient</label>
               <select id="report-recipient" required>
-                <option value="class_rep">Class Rep / Prefect</option>
+                <option value="class_rep">Class Rep</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
@@ -467,7 +467,7 @@
 
         <div id="student-tab-rep" class="card hidden">
           <h3>Class Rep Control Panel</h3>
-          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Complete student roster, attendance tracking, timetable publishing, and analytics.</p>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem;">students</p>
           
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
             <button onclick="switchRepSubTab('roster')" class="btn-outline" style="flex: 1;">Students</button>
@@ -526,7 +526,7 @@
                 <input type="text" id="rep-tt-title"  required>
               </div>
               <div class="form-group">
-                <label>Text Schedule (optional when a file is attached)</label>
+                <label>Text</label>
                 <textarea id="rep-tt-content" rows="3" placeholder="Enter the timetable details here, or attach a timetable file below."></textarea>
               </div>
               <div class="form-group">
@@ -646,7 +646,7 @@
               <input type="text" id="att-unit" required>
             </div>
             <div class="form-group">
-              <label>Duration (Minutes)</label>
+              <label>Duration</label>
               <input type="number" id="att-duration" value="15" min="1" max="180" required>
             </div>
             <button type="submit" class="btn-primary">Start Session</button>
@@ -674,20 +674,20 @@
         <span>ADMIN</span>
       </div>
       <div class="nav-section-title">Supreme Authority</div>
-      <button class="nav-item active" id="adnav-analysis" onclick="switchAdminTab('analysis')">Analytics & Reports</button>
-      <button class="nav-item" id="adnav-users" onclick="switchAdminTab('users')">All Users & Vault</button>
+      <button class="nav-item active" id="adnav-analysis" onclick="switchAdminTab('analysis')">Analytics</button>
+      <button class="nav-item" id="adnav-users" onclick="switchAdminTab('users')">Users</button>
       <button class="nav-item" id="adnav-students" onclick="switchAdminTab('students')">Students Directory</button>
       <button class="nav-item" id="adnav-reps" onclick="switchAdminTab('reps')">Class Reps Management</button>
-      <button class="nav-item" id="adnav-groupleaders" onclick="switchAdminTab('groupleaders')">Group Leaders (1-30)</button>
-      <button class="nav-item" id="adnav-staff" onclick="switchAdminTab('staff')">Lecturers, CODs, Deans, VC</button>
+      <button class="nav-item" id="adnav-groupleaders" onclick="switchAdminTab('groupleaders')">Group Leaders</button>
+      <button class="nav-item" id="adnav-staff" onclick="switchAdminTab('staff')">Staff</button>
       <button class="nav-item" id="adnav-pending" onclick="switchAdminTab('pending')">Pending Approvals</button>
-      <button class="nav-item" id="adnav-provision" onclick="switchAdminTab('provision')">Manual User Provisioning</button>
-      <button class="nav-item" id="adnav-uploads" onclick="switchAdminTab('uploads')">Admin File Uploads</button>
+      <button class="nav-item" id="adnav-provision" onclick="switchAdminTab('provision')">Provisioning</button>
+      <button class="nav-item" id="adnav-uploads" onclick="switchAdminTab('uploads')">Uploads</button>
       <button class="nav-item" id="adnav-appeals" onclick="switchAdminTab('appeals')">Unban Requests</button>
       <button class="nav-item" id="adnav-passwordrequests" onclick="switchAdminTab('passwordrequests')">Password Reset Requests</button>
       <button class="nav-item" id="adnav-reports" onclick="switchAdminTab('reports')">Reports & Evidence</button>
-      <button class="nav-item" id="adnav-warnings" onclick="switchAdminTab('warnings')">Warnings Log</button>
-      <button class="nav-item" id="adnav-chats" onclick="switchAdminTab('chats')">Monitor & Delete Chats</button>
+      <button class="nav-item" id="adnav-warnings" onclick="switchAdminTab('warnings')">Warnings</button>
+      <button class="nav-item" id="adnav-chats" onclick="switchAdminTab('chats')">Monitor</button>
       <div class="sidebar-footer">
         <div class="nav-section-title" style="padding-top: 0;">Change Mode</div>
         <div class="theme-radio-group">
@@ -722,11 +722,11 @@
             <div class="card analytics-panel"><h4>Group membership</h4><p class="analytics-note">Students assigned to each group</p><div id="analytics-groups" class="analytics-chart"></div></div>
             <div class="card analytics-panel"><h4>Administrative actions</h4><p class="analytics-note">Recorded ban, unban, warning and removal actions</p><div id="analytics-actions" class="analytics-chart"></div></div>
           </div>
-          <button onclick="downloadAnalyticsCSV()" class="btn-primary" style="width: auto;">Download Analytics Data (CSV)</button>
+          <button onclick="download" class="btn-primary" style="width: auto;">Download</button>
         </div>
 
         <div id="admin-tab-users" class="card hidden">
-          <h3>All Portal Users Vault</h3>
+          <h3>Users</h3>
           <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Full authority over names, usernames, roles, and passwords.</p>
           <input type="text" id="admin-search" placeholder="Search users..." oninput="renderAdminUsers()" style="padding: 0.65rem; width: 100%; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem;">
           <div style="overflow-x: auto;">
@@ -805,7 +805,7 @@
 
         <div id="admin-tab-groupleaders" class="card hidden">
           <h3>Group Leaders Management </h3>
-          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Assign exactly one leader per group number (1 to 30).</p>
+          <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Assign Group leader.</p>
           <form id="appoint-gl-form" style="max-width: 450px; margin-bottom: 1.5rem;">
             <div class="form-group">
               <label>Group Number</label>
@@ -841,7 +841,7 @@
           <h3>Provisioning</h3>
           <form id="manual-staff-form" style="max-width: 500px; margin-top: 1rem;">
             <div class="form-group">
-              <label>Username / Reg Number</label>
+              <label>Username </label>
               <input type="text" id="manual-username" required>
             </div>
             <div class="form-group">
@@ -856,7 +856,7 @@
               <label>Role</label>
               <select id="manual-role">
                 <option value="student">Student</option>
-                <option value="class_rep">Class Rep / Prefect</option>
+                <option value="class_rep">Class Rep </option>
                 <option value="lecturer">Lecturer</option>
                 <option value="cod">COD</option>
                 <option value="dean">Dean</option>
@@ -869,7 +869,7 @@
         </div>
 
         <div id="admin-tab-uploads" class="card hidden">
-          <h3>Admin File Uploads for Students</h3>
+          <h3>Uploads</h3>
           <p style="color: var(--muted); font-size: 0.86rem; margin-bottom: 1rem;">Upload notices, resources, or files that will be broadcast to all students.</p>
           <form id="admin-upload-form" style="max-width: 500px; margin-bottom: 1.5rem;">
             <div class="form-group">
@@ -877,7 +877,7 @@
               <input type="text" id="admin-up-title" required>
             </div>
             <div class="form-group">
-              <label>Choose File from Device</label>
+              <label>Choose File</label>
               <input type="file" id="admin-up-file" required>
             </div>
             <button type="submit" class="btn-primary">Publish</button>
@@ -886,7 +886,7 @@
 
         <div id="admin-tab-passwordrequests" class="card hidden">
           <h3>Password Reset Requests</h3>
-          <p style="color:var(--muted);font-size:.86rem;">Generate a one-time code, then use the email link to send it to the student. The student enters the code and their password is reset to their username as requested.</p>
+          <p style="color:var(--muted);font-size:.86rem;">code</p>
           <div style="overflow-x:auto;"><table class="table" id="admin-password-requests-table"></table></div>
         </div>
 
@@ -997,7 +997,6 @@
 
       if (!localStorage.getItem("IT_portal_assignments")) {
         localStorage.setItem("IT_portal_assignments", JSON.stringify([
-          { id: 1, title: "Lab 1: Algorithm Complexity", deadline: "2027-01-15T23:59", author: "admin" }
         ]));
       }
 
